@@ -1,30 +1,252 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="main">
+    <div class="app-phone">
+      <div class="phone-header">
+        <img src="./assets/vuestagram.png">
+        <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
+        <a class="next-cta" v-if="step === 2" @click="step++">Next</a>
+        <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
+      </div>
+      <phone-body
+        :step="step"
+        :posts="posts"
+        :filters="filters"
+        :image="image"
+        :selectedFilter="selectedFilter"
+        v-model="caption"
+      />
+      <div class="phone-footer">
+        <div class="home-cta" @click="goToHome">
+          <i class="fas fa-home fa-lg"></i>
+        </div>
+        <div class="upload-cta">
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="inputfile"
+            @change="uploadImage"
+            :disabled="step !== 1"
+          >
+          <label for="file">
+            <i class="far fa-plus-square fa-lg"></i>
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
-  <router-view/>
 </template>
 
+<script>
+import EventBus from "./utils/event-bus.js";
+import PhoneBody from "./components/PhoneBody";
+// mock data
+import posts from "./data/posts";
+import filters from "./data/filters";
+export default {
+  name: "App",
+  data() {
+    return {
+      step: 1,
+      posts,
+      filters,
+      image: "",
+      selectedFilter: "",
+      caption: ""
+    };
+  },
+  created() {
+    EventBus.$on("filter-selected", evt => {
+      this.selectedFilter = evt.filter;
+    });
+  },
+  methods: {
+    goToHome() {
+      this.image = "";
+      this.selectedFilter = "";
+      this.caption = "";
+      this.step = 1;
+    },
+    uploadImage(evt) {
+      const files = evt.target.files;
+      if (!files.length) return;
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = evt => {
+        this.image = evt.target.result;
+        this.step = 2;
+      };
+      // To enable reuploading of same files in Chrome
+      document.querySelector("#file").value = "";
+    },
+    sharePost() {
+      const post = {
+        username: "webmaster95",
+        userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
+        postImage: this.image,
+        likes: 0,
+        caption: this.caption,
+        filter: this.filterType
+      };
+      this.posts.unshift(post);
+      this.goToHome();
+    }
+  },
+  components: {
+    "phone-body": PhoneBody
+  }
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+html,
+body,
+#main {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #e6ecf1;
+  font-family: "Roboto", sans-serif;
 }
 
-#nav {
-  padding: 30px;
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#nav a {
+.app-phone {
+  background-color: white;
+  height: 620px;
+  width: 375px;
+  overflow: hidden;
+}
+
+.phone-header {
+  height: auto;
+  width: 375px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: #fafafa;
+  border-bottom: 1px solid #eeeeee;
+  z-index: 99;
+}
+.phone-header img {
+  max-width: 120px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 1px;
+}
+.phone-header .cancel-cta,
+.phone-header .next-cta {
+  position: absolute;
+  top: 12px;
+  color: #209cee;
   font-weight: bold;
-  color: #2c3e50;
+  cursor: pointer;
+}
+.phone-header .cancel-cta {
+  left: 10px;
+}
+.phone-header .next-cta {
+  right: 10px;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.feed {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-right: -15px;
+}
+
+.caption-container {
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.caption-container textarea {
+  border: 0;
+  font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+.caption-container textarea:focus {
+  outline: 0;
+}
+
+.selected-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 330px;
+}
+
+.phone-footer {
+  height: 35px;
+  width: 375px;
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0;
+  background: #fafafa;
+  border-top: 1px solid #eeeeee;
+  z-index: 99;
+}
+.phone-footer .home-cta {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  cursor: pointer;
+}
+.phone-footer .upload-cta {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+}
+.phone-footer .upload-cta p {
+  font-size: 0.63rem;
+  position: absolute;
+  left: -25px;
+  top: 5px;
+}
+.phone-footer input[name=file] {
+  visibility: hidden;
+}
+.phone-footer label {
+  cursor: pointer;
+  z-index: 99;
+}
+
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 520px) {
+  #app {
+    height: 100% !important;
+    padding-top: 0 !important;
+  }
+
+  .app-phone,
+.app-phone-scroll-cover {
+    height: 100%;
+    width: 100%;
+  }
+
+  .phone-header,
+.phone-footer {
+    width: 100%;
+  }
+}
+@media (max-height: 520px) {
+  .app-phone {
+    transform: scale(0.6);
+  }
 }
 </style>

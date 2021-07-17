@@ -1,4 +1,4 @@
-# vue-sweetly-encount
+# vue3stagram
 
 ## Project setup
 ```
