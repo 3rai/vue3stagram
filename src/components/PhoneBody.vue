@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .phone-body {
   height: 100%;
 }

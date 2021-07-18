@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .filter-type {
   width: 100px;
   display: inline-block;

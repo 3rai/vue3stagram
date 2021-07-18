@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .vuestagram-post {
   padding-top: 50px;
 }

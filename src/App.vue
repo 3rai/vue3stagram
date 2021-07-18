@@ -1,32 +1,30 @@
 <template>
-  <div id="main">
-    <div class="app-phone">
-      <div class="phone-header">
-        <img src="./assets/vuestagram.png">
-        <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
-        <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
+  <div class="app-phone">
+    <div class="phone-header">
+      <img src="./assets/vuestagram.png">
+      <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
+      <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
+      <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
+    </div>
+    <phone-body
+      v-model="caption"
+    />
+    <div class="phone-footer">
+      <div class="home-cta" @click="goToHome">
+        <i class="fas fa-home fa-lg"></i>
       </div>
-      <phone-body
-        v-model="caption"
-      />
-      <div class="phone-footer">
-        <div class="home-cta" @click="goToHome">
-          <i class="fas fa-home fa-lg"></i>
-        </div>
-        <div class="upload-cta">
-          <input
-            type="file"
-            name="file"
-            id="file"
-            class="inputfile"
-            @change="uploadImage"
-            :disabled="step !== 1"
-          >
-          <label for="file">
-            <i class="far fa-plus-square fa-lg"></i>
-          </label>
-        </div>
+      <div class="upload-cta">
+        <input
+          type="file"
+          name="file"
+          id="file"
+          class="inputfile"
+          @change="uploadImage"
+          :disabled="step !== 1"
+        >
+        <label for="file">
+          <i class="far fa-plus-square fa-lg"></i>
+        </label>
       </div>
     </div>
   </div>
@@ -79,10 +77,8 @@ export default {
 };
 </script>
 
-<style scoped>
-html,
-body,
-#main {
+<style>
+html, body, #app {
   height: 100%;
   margin: 0;
   overflow: hidden;
@@ -90,7 +86,7 @@ body,
   font-family: "Roboto", sans-serif;
 }
 
-#main {
+#app {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,14 +210,12 @@ body,
     padding-top: 0 !important;
   }
 
-  .app-phone,
-.app-phone-scroll-cover {
+  .app-phone, .app-phone-scroll-cover {
     height: 100%;
     width: 100%;
   }
 
-  .phone-header,
-.phone-footer {
+  .phone-header, .phone-footer {
     width: 100%;
   }
 }
