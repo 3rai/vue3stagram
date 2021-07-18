@@ -1,12 +1,69 @@
 import { createStore } from 'vuex'
+import posts from "@/data/posts";
+import filters from "@/data/filters";
 
 export default createStore({
   state: {
+    /* 全体の状態 */
+    step: 1,  // 画面状態
+    posts: posts, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
+    filters: filters, // 投稿前のフィルター情報
+    /* 投稿情報 */
+    uploadImage: "",
     selectedFilter: "",
+    inputCaption: ""
+  },
+  getters: {
+    getStep(state){
+      return state.step;
+    },
+    getPosts(state){
+      return state.posts;
+    },
+    getFilters(state){
+      return state.filters;
+    },
+    getUploadImage(state){
+      return state.uploadImage;
+    },
+    getSelectedFilters(state){
+      return state.selectedFilter;
+    },
+    getInputCaption(state){
+      return state.inputCaption;
+    }
   },
   mutations: {
+    setStep(state, data){
+      state.step = data;
+    },
+    setPosts(state, data){
+      state.posts = data;
+    },
+    addPosts(state, data){
+      state.posts.unshift(data);
+    },
+
+    setUploadImage(state, data){
+      state.uploadImage = data;
+    },
+    setSelectedFilters(state, data){
+      state.selectedFilter = data;
+    },
+    setInputCaption(state, data){
+      state.inputCaption = data;
+    }
   },
   actions: {
+    resetStepAction(context){
+      context.commit('setStep', 1);
+      context.commit('setUploadImage', "");
+      context.commit('setSelectedFilters', "");
+      context.commit('setInputCaption', "");
+    },
+    sharePostAction(context, postData){
+      context.commit('addPosts', postData);
+    }
   },
   modules: {
   }
