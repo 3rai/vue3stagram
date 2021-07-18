@@ -1,4 +1,6 @@
 # vue3stagram
+Adam Harpur様のvuestagramを参考に，Vue3，Vuexを利用して動作するように改良したものです．
+https://github.com/admhpr/vuestagram
 
 ## Project setup
 ```
