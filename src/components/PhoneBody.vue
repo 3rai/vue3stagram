@@ -44,22 +44,34 @@ import FilterType from "./FilterType";
 
 export default {
   name: "PhoneBody",
-  props: {
-    step: Number,
-    posts: Array,
-    filters: Array,
-    image: String,
-    selectedFilter: String,
-    value: String
-  },
   components: {
     post: Post,
     "filter-type": FilterType
-  }
+  },
+  computed: {
+    step(){
+      return this.$store.getters.getStep;
+    },
+    posts(){
+      return this.$store.getters.getPosts;
+    },
+    filters(){
+      return this.$store.getters.getFilters;
+    },
+    image(){
+      return this.$store.getters.getUploadImage;
+    },
+    selectedFilter(){
+      return this.$store.getters.getSelectedFilters;
+    },
+    caption(){
+      return this.$store.getters.getInputCaption;
+    }
+  },
 };
 </script>
 
-<style scoped>
+<style>
 .phone-body {
   height: 100%;
 }

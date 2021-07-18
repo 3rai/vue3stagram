@@ -1,71 +1,61 @@
 <template>
-  <div id="main">
-    <div class="app-phone">
-      <div class="phone-header">
-        <img src="./assets/vuestagram.png">
-        <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2" @click="step++">Next</a>
-        <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
+  <div class="app-phone">
+    <div class="phone-header">
+      <img src="./assets/vuestagram.png">
+      <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
+      <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
+      <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
+    </div>
+    <phone-body
+      v-model="caption"
+    />
+    <div class="phone-footer">
+      <div class="home-cta" @click="goToHome">
+        <i class="fas fa-home fa-lg"></i>
       </div>
-      <phone-body
-        :step="step"
-        :posts="posts"
-        :filters="filters"
-        :image="image"
-        :selectedFilter="selectedFilter"
-        v-model="caption"
-      />
-      <div class="phone-footer">
-        <div class="home-cta" @click="goToHome">
-          <i class="fas fa-home fa-lg"></i>
-        </div>
-        <div class="upload-cta">
-          <input
-            type="file"
-            name="file"
-            id="file"
-            class="inputfile"
-            @change="uploadImage"
-            :disabled="step !== 1"
-          >
-          <label for="file">
-            <i class="far fa-plus-square fa-lg"></i>
-          </label>
-        </div>
+      <div class="upload-cta">
+        <input
+          type="file"
+          name="file"
+          id="file"
+          class="inputfile"
+          @change="uploadImage"
+          :disabled="step !== 1"
+        >
+        <label for="file">
+          <i class="far fa-plus-square fa-lg"></i>
+        </label>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import EventBus from "./utils/event-bus.js";
 import PhoneBody from "./components/PhoneBody";
-// mock data
-import posts from "./data/posts";
-import filters from "./data/filters";
 export default {
   name: "App",
+  components: {
+    "phone-body": PhoneBody
+  },
   data() {
     return {
-      step: 1,
-      posts,
-      filters,
-      image: "",
-      selectedFilter: "",
-      caption: ""
+
     };
   },
+  computed: {
+    step(){
+      return this.$store.getters.getStep;
+    },
+    caption(){
+      return this.$store.getters.getInputCaption;
+    }
+  },
   created() {
-    EventBus.$on("filter-selected", evt => {
-      this.selectedFilter = evt.filter;
-    });
+    this.$store.dispatch('initPostData');
   },
   methods: {
     goToHome() {
-      this.image = "";
-      this.selectedFilter = "";
-      this.caption = "";
-      this.step = 1;
+      this.$store.dispatch('resetStepAction');
     },
     uploadImage(evt) {
       const files = evt.target.files;
@@ -73,35 +63,22 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
-        this.image = evt.target.result;
-        this.step = 2;
+        this.$store.commit('setUploadImage', evt.target.result);
+        this.$store.commit('setStep', 2);
       };
       // To enable reuploading of same files in Chrome
       document.querySelector("#file").value = "";
     },
     sharePost() {
-      const post = {
-        username: "webmaster95",
-        userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
-        postImage: this.image,
-        likes: 0,
-        caption: this.caption,
-        filter: this.filterType
-      };
-      this.posts.unshift(post);
+      this.$store.dispatch('sharePostAction');
       this.goToHome();
     }
-  },
-  components: {
-    "phone-body": PhoneBody
   }
 };
 </script>
 
 <style>
-html,
-body,
-#main {
+html, body, #app {
   height: 100%;
   margin: 0;
   overflow: hidden;
@@ -109,7 +86,7 @@ body,
   font-family: "Roboto", sans-serif;
 }
 
-#main {
+#app {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,14 +210,12 @@ body,
     padding-top: 0 !important;
   }
 
-  .app-phone,
-.app-phone-scroll-cover {
+  .app-phone, .app-phone-scroll-cover {
     height: 100%;
     width: 100%;
   }
 
-  .phone-header,
-.phone-footer {
+  .phone-header, .phone-footer {
     width: 100%;
   }
 }
