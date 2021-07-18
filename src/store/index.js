@@ -7,7 +7,7 @@ export default createStore({
   state: {
     /* 全体の状態 */
     step: 1,  // 画面状態
-    posts: mock_posts, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
+    posts: null, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
     filters: mock_filters, // 投稿前のフィルター情報
     /* 投稿情報 */
     uploadImage: "",
@@ -44,7 +44,6 @@ export default createStore({
     addPosts(state, data){
       state.posts.unshift(data);
     },
-
     setUploadImage(state, data){
       state.uploadImage = data;
     },
@@ -56,6 +55,10 @@ export default createStore({
     }
   },
   actions: {
+    initPostData(context){
+      //データベースを使う場合など，ここでデータ取得などを行うと良いかも
+      context.commit('setPosts', mock_posts);
+    },
     resetStepAction(context){
       context.commit('setStep', 1);
       context.commit('setUploadImage', "");
@@ -72,7 +75,7 @@ export default createStore({
         filter: this.state.selectedFilter
       };
       context.commit('addPosts', postData);
-    }
+    },
   },
   modules: {
   }

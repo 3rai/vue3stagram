@@ -51,7 +51,7 @@ export default {
     }
   },
   created() {
-
+    this.$store.dispatch('initPostData');
   },
   methods: {
     goToHome() {

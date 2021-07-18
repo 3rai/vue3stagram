@@ -1,5 +1,6 @@
 export default [
   {
+    id: 1,
     username: "socleansofreshh",
     userImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/me_3.jpg",
     postImage:
@@ -10,6 +11,7 @@ export default [
     filter: "perpetua"
   },
   {
+    id: 2,
     username: "djirdehh",
     userImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/me2.png",
     postImage:
@@ -20,6 +22,7 @@ export default [
     filter: "clarendon"
   },
   {
+    id: 3,
     username: "Evan You",
     userImage: "https://avatars2.githubusercontent.com/u/499550?s=460&v=4",
     postImage:

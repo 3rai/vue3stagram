@@ -18,8 +18,7 @@
 
     <div class="content">
       <div class="heart">
-        <!-- <i class="far fa-heart fa-lg" :class="{'fas': this.post.hasBeenLiked}" @click="like"></i> -->
-        <i class="far fa-heart fa-lg false" @click="like"></i>
+        <i class="far fa-heart fa-lg" :class="{'fas': this.post.hasBeenLiked}" @click="like"></i>
       </div>
       <p class="likes">{{post.likes}} likes</p>
       <p class="caption">
@@ -40,6 +39,7 @@ export default {
     like() {
       //this.post.hasBeenLiked ? this.post.likes-- : this.post.likes++;
       //this.post.hasBeenLiked = !this.post.hasBeenLiked;
+      console.log(this.post);
     }
   }
 };
