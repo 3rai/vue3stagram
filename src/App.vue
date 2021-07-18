@@ -40,20 +40,32 @@
 <script>
 import EventBus from "./utils/event-bus.js";
 import PhoneBody from "./components/PhoneBody";
-// mock data
-import posts from "./data/posts";
-import filters from "./data/filters";
 export default {
   name: "App",
   data() {
     return {
-      step: 1,
-      posts,
-      filters,
-      image: "",
-      selectedFilter: "",
-      caption: ""
+
     };
+  },
+  computed: {
+    step(){
+      return this.$store.getters.getStep;
+    },
+    posts(){
+      return this.$store.getters.getPosts;
+    },
+    filters(){
+      return this.$store.getters.getFilters;
+    },
+    image(){
+      return this.$store.getters.getUploadImage;
+    },
+    selectedFilter(){
+      return this.$store.getters.getSelectedFilters;
+    },
+    caption(){
+      return this.$store.getters.getInputCaption;
+    }
   },
   created() {
     EventBus.$on("filter-selected", evt => {
@@ -62,10 +74,7 @@ export default {
   },
   methods: {
     goToHome() {
-      this.image = "";
-      this.selectedFilter = "";
-      this.caption = "";
-      this.step = 1;
+      this.$store.dispatch('resetStepAction');
     },
     uploadImage(evt) {
       const files = evt.target.files;
@@ -74,21 +83,13 @@ export default {
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
         this.image = evt.target.result;
-        this.step = 2;
+        this.$store.commit('setStep', 2);
       };
       // To enable reuploading of same files in Chrome
       document.querySelector("#file").value = "";
     },
     sharePost() {
-      const post = {
-        username: "webmaster95",
-        userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
-        postImage: this.image,
-        likes: 0,
-        caption: this.caption,
-        filter: this.filterType
-      };
-      this.posts.unshift(post);
+      this.$store.dispatch('sharePostAction');
       this.goToHome();
     }
   },

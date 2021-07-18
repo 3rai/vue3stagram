@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+// mock data
 import posts from "@/data/posts";
 import filters from "@/data/filters";
 
@@ -61,7 +62,15 @@ export default createStore({
       context.commit('setSelectedFilters', "");
       context.commit('setInputCaption', "");
     },
-    sharePostAction(context, postData){
+    sharePostAction(context){
+      const postData = {
+        username: "webmaster95",
+        userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
+        postImage: this.state.uploadImage,
+        likes: 0,
+        caption: this.state.inputCaption,
+        filter: this.state.selectedFilter
+      };
       context.commit('addPosts', postData);
     }
   },
