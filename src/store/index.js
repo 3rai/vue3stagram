@@ -44,6 +44,13 @@ export default createStore({
     addPosts(state, data){
       state.posts.unshift(data);
     },
+    updateLikedInPost(state, target){
+      // DB更新で得た値を設定したほうが良い
+      
+      // ↓仮記述
+      target.hasBeenLiked ? target.likes-- : target.likes++;
+      target.hasBeenLiked = !target.hasBeenLiked;
+    },
     setUploadImage(state, data){
       state.uploadImage = data;
     },
@@ -76,6 +83,14 @@ export default createStore({
       };
       context.commit('addPosts', postData);
     },
+    likeAction(context, contentId){
+      const target = context.state.posts.find((v) => v.id === contentId);
+      // DB側の情報更新
+      // DB更新後にstateを再読み込みする
+      
+      // ↓仮記述
+      context.commit('updateLikedInPost', target);
+    }
   },
   modules: {
   }

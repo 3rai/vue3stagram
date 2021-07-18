@@ -37,9 +37,7 @@ export default {
   },
   methods: {
     like() {
-      //this.post.hasBeenLiked ? this.post.likes-- : this.post.likes++;
-      //this.post.hasBeenLiked = !this.post.hasBeenLiked;
-      console.log(this.post);
+      this.$store.dispatch('likeAction', this.post.id);
     }
   }
 };
