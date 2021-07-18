@@ -59,7 +59,7 @@ export default createStore({
     resetStepAction(context){
       context.commit('setStep', 1);
       context.commit('setUploadImage', "");
-      context.commit('setSelectedFilters', "");
+      context.commit('setSelectedFilter', "");
       context.commit('setInputCaption', "");
     },
     sharePostAction(context){
