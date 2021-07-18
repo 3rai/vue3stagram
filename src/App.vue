@@ -4,15 +4,10 @@
       <div class="phone-header">
         <img src="./assets/vuestagram.png">
         <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2" @click="step++">Next</a>
+        <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
         <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
       </div>
       <phone-body
-        :step="step"
-        :posts="posts"
-        :filters="filters"
-        :image="image"
-        :selectedFilter="selectedFilter"
         v-model="caption"
       />
       <div class="phone-footer">
@@ -38,10 +33,12 @@
 </template>
 
 <script>
-import EventBus from "./utils/event-bus.js";
 import PhoneBody from "./components/PhoneBody";
 export default {
   name: "App",
+  components: {
+    "phone-body": PhoneBody
+  },
   data() {
     return {
 
@@ -51,26 +48,12 @@ export default {
     step(){
       return this.$store.getters.getStep;
     },
-    posts(){
-      return this.$store.getters.getPosts;
-    },
-    filters(){
-      return this.$store.getters.getFilters;
-    },
-    image(){
-      return this.$store.getters.getUploadImage;
-    },
-    selectedFilter(){
-      return this.$store.getters.getSelectedFilters;
-    },
     caption(){
       return this.$store.getters.getInputCaption;
     }
   },
   created() {
-    EventBus.$on("filter-selected", evt => {
-      this.selectedFilter = evt.filter;
-    });
+
   },
   methods: {
     goToHome() {
@@ -82,7 +65,7 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
-        this.image = evt.target.result;
+        this.$store.commit('setUploadImage', evt.target.result);
         this.$store.commit('setStep', 2);
       };
       // To enable reuploading of same files in Chrome
@@ -92,14 +75,11 @@ export default {
       this.$store.dispatch('sharePostAction');
       this.goToHome();
     }
-  },
-  components: {
-    "phone-body": PhoneBody
   }
 };
 </script>
 
-<style>
+<style scoped>
 html,
 body,
 #main {

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import EventBus from "../utils/event-bus.js";
 export default {
   name: "FilterType",
   props: {
@@ -21,7 +20,7 @@ export default {
   },
   methods: {
     selectedFilter() {
-      EventBus.$emit("filter-selected", { filter: this.filter.name });
+      this.$store.commit('setSelectedFilter', { filter: this.filter.name })
     }
   }
 };

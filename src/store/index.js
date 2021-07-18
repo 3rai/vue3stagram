@@ -1,14 +1,14 @@
 import { createStore } from 'vuex'
 // mock data
-import posts from "@/data/posts";
-import filters from "@/data/filters";
+import mock_posts from "@/data/posts";
+import mock_filters from "@/data/filters";
 
 export default createStore({
   state: {
     /* 全体の状態 */
     step: 1,  // 画面状態
-    posts: posts, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
-    filters: filters, // 投稿前のフィルター情報
+    posts: mock_posts, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
+    filters: mock_filters, // 投稿前のフィルター情報
     /* 投稿情報 */
     uploadImage: "",
     selectedFilter: "",
@@ -48,7 +48,7 @@ export default createStore({
     setUploadImage(state, data){
       state.uploadImage = data;
     },
-    setSelectedFilters(state, data){
+    setSelectedFilter(state, data){
       state.selectedFilter = data;
     },
     setInputCaption(state, data){
