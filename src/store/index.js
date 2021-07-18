@@ -6,6 +6,10 @@ import mock_filters from "@/data/filters";
 export default createStore({
   state: {
     /* 全体の状態 */
+    user: {
+      userName: undefined,
+      isLoggedIn: false,
+    },
     step: 1,  // 画面状態
     posts: null, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
     filters: mock_filters, // 投稿前のフィルター情報
@@ -15,6 +19,9 @@ export default createStore({
     inputCaption: ""
   },
   getters: {
+    getIsLoggedIn(state){
+      return state.user.isLoggedIn;
+    },
     getStep(state){
       return state.step;
     },
@@ -35,6 +42,9 @@ export default createStore({
     }
   },
   mutations: {
+    setIsLoggedIn(state, data){
+      state.user.isLoggedIn = data;
+    },
     setStep(state, data){
       state.step = data;
     },
@@ -62,6 +72,14 @@ export default createStore({
     }
   },
   actions: {
+    login(context){
+      // 本当はここで色々やってから
+      context.commit('setIsLoggedIn', true);
+    },
+    logout(context){
+      // ここも色々やってから
+      context.commit('setIsLoggedIn', false);
+    },
     initPostData(context){
       //データベースを使う場合など，ここでデータ取得などを行うと良いかも
       context.commit('setPosts', mock_posts);

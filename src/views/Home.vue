@@ -14,6 +14,7 @@
         <div class="home-cta" @click="goToHome">
           <i class="fas fa-home fa-lg"></i>
         </div>
+        <button class="logout-button" @click="logout">ログアウト</button>
         <div class="upload-cta">
           <input
             type="file"
@@ -69,6 +70,10 @@ export default {
     sharePost() {
       this.$store.dispatch('sharePostAction');
       this.goToHome();
+    },
+    logout(){
+      this.$store.dispatch('logout');
+      this.$router.push('/auth');
     }
   }
 }
@@ -158,7 +163,15 @@ export default {
   position: absolute;
   left: 10px;
   top: 6px;
+  width: 30px;
   cursor: pointer;
+}
+.phone-footer .logout-button {
+  position: absolute;
+  left: 50px;
+  top: 6px;
+  cursor: pointer;
+  z-index: 10;
 }
 .phone-footer .upload-cta {
   position: absolute;
