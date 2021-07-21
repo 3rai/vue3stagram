@@ -2,6 +2,7 @@
 node_modules
 /dist
 
+# 確認（中村）
 
 # local env files
 .env.local
