@@ -54,7 +54,6 @@ export default {
   methods: {
     goToHome() {
       this.$store.dispatch('resetStepAction');
-      this.$router.push('/profile');
     },
     uploadImage(evt) {
       const files = evt.target.files;
