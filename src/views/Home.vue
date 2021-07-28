@@ -77,7 +77,7 @@ export default {
     }
   }
 }
-//miyazakitest
+//miyazaki
 </script>
 
 <style>
