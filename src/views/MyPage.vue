@@ -8,7 +8,7 @@
 export default {
   name: 'MyPage',
   methods: {
-    
+    //test   
   }
 }
 </script>
