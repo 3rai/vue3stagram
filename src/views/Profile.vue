@@ -11,7 +11,7 @@ export default {
   methods: {
     login() {
       this.$store.dispatch('tameshi');
-      this.$router.push('/mypage');
+      this.$router.push('/');
     }
   }
 }
