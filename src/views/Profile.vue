@@ -14,5 +14,6 @@ export default {
       this.$router.push('/');
     }
   }
+   //kouta
 }
 </script>
