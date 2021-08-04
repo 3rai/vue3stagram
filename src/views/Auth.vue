@@ -1,18 +1,36 @@
 <template>
   <div class="auth">
-    <h1>This is an login page</h1>
-    <button @click="login">LOG IN</button>
+    <!--<h1>This is an login page</h1>-->
+    <div class = "logo">
+      <img src="@/assets/okashilogo.png">
+    </div>
+    <button @click="signUp">signIn</button>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Auth',
+import firebase from 'firebase'
+
+export default{
+  name: 'Signup',
+  data () {
+    return {
+    }
+  },
   methods: {
-    login() {
-      this.$store.dispatch('login');
-      this.$router.push('/');
+    signUp: function () {
+      var provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithPopup(provider)
+        .then(obj => {
+          alert('Create account: ' + obj.user.displayName)
+          this.$store.commit('setIsLoggedIn', true);
+          this.$router.push('/')
+        })
+        .catch(error => alert(error.message))
     }
   }
 }
+
+
+
 </script>
