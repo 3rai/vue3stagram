@@ -10,7 +10,7 @@ export default {
   name: 'profile',
   methods: {
     login() {
-      this.$store.dispatch('tameshi');
+      //this.$store.dispatch('tameshi');
       this.$router.push('/');
     }
   }
