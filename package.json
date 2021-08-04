@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "firebase": "^8.8.1",
     "vue": "^3.0.0",
     "vue-dragscroll": "^3.0.0",
     "vue-router": "^4.0.0-0",
@@ -43,5 +44,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "Adam Harpur様のvuestagramを参考に，Vue3，Vuexを利用して動作するように改良したものです．\r https://github.com/admhpr/vuestagram",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3rai/vue3stagram.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3rai/vue3stagram/issues"
+  },
+  "homepage": "https://github.com/3rai/vue3stagram#readme"
 }
