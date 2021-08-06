@@ -22,7 +22,7 @@ const routes = [
     path: '/mypage',
     name: 'MyPage',
     component: MyPage,
-    meta: { requiresAuth: true }
+    //meta: { requiresAuth: true }
   },
   {
     path: '/profile',
