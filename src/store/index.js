@@ -45,6 +45,9 @@ export default createStore({
     setIsLoggedIn(state, data){
       state.user.isLoggedIn = data;
     },
+    setUserInfo(state, data){
+      state.user.userName = data;
+    },
     setStep(state, data){
       state.step = data;
     },
