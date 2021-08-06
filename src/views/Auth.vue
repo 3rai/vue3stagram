@@ -31,6 +31,7 @@ export default{
             userName: result.additionalUserInfo.profile.given_name,
             mail: result.additionalUserInfo.profile.email,          
           }
+          
           console.log(userData)
           db.firestore().collection('users').doc(result.user.uid).set(userData)
           this.$store.commit('setUserInfo', userData.userName);
