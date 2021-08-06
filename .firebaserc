@@ -1,9 +1,5 @@
 {
   "projects": {
-<<<<<<< HEAD
-    "default": "sweets-morimoto"
-=======
     "default": "sweet-miyazaki"
->>>>>>> a372d6f8e7a040b8fbc604d74f14e51c5c731b72
   }
 }
