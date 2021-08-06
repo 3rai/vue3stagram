@@ -95,7 +95,7 @@ export default createStore({
     },
     sharePostAction(context){
       const postData = {
-        username: "userName",
+        username: this.state.user.userName,
         userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
         postImage: this.state.uploadImage,
         likes: 0,
