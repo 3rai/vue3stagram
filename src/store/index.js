@@ -45,6 +45,9 @@ export default createStore({
     setIsLoggedIn(state, data){
       state.user.isLoggedIn = data;
     },
+    setUserInfo(state, data){
+      state.user.userName = data;
+    },
     setStep(state, data){
       state.step = data;
     },
@@ -92,7 +95,7 @@ export default createStore({
     },
     sharePostAction(context){
       const postData = {
-        username: "webmaster95",
+        username: "userName",
         userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
         postImage: this.state.uploadImage,
         likes: 0,
