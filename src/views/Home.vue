@@ -2,7 +2,7 @@
   <div class="home">
     <div class="app-phone">
       <div class="phone-header">
-        <img src="@/assets/vuestagram.png">
+        <img src="@/assets/okashilogo.png">
         <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
         <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
         <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
@@ -99,10 +99,11 @@ export default {
   z-index: 99;
 }
 .phone-header img {
-  max-width: 120px;
+  max-width: 150px;
   display: block;
   margin: 0 auto;
-  padding-top: 1px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .phone-header .cancel-cta,
 .phone-header .next-cta {
