@@ -111,9 +111,9 @@ h2{
 }
 
 
-p{
+/* p{
   text-align: left;
-}
+} */
 
 #main{
   /* width: 100%; */
@@ -121,6 +121,9 @@ p{
   flex-wrap: wrap;
   overflow: scroll; 
   height: 100vh; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 80em;
   background: #dfd9c7;
 }
 
