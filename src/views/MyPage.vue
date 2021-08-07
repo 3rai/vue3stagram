@@ -4,7 +4,7 @@
       <h1>Profile</h1>
       <div class="user-info">
         <div class="photo1">
-          <img src="@/assets/S__835622.jpg">
+          <img src="@/assets/S__852356.jpg">
         </div>
         <h2>name</h2>
         <p>根本</p>
@@ -104,12 +104,11 @@ h2{
 }
 
 .photo1 {
-  text-align: left;
-  width: 150px;
-  height: 150px;
-  /* text-align:center */
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  /* border-radius: 50%; */
 }
-
 
 /* p{
   text-align: left;
