@@ -40,6 +40,27 @@ export default{
         }, 
         "four":{
           "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "five":{
+          "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "six":{
+          "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "seven":{
+          "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "eight":{
+          "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "nine":{
+          "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "ten":{
+          "picture": "/img/S__835622.5651814a.jpg"
+        },
+        "eleven":{
+          "picture": "/img/S__835622.5651814a.jpg"
         }
       }
     }
@@ -84,8 +105,8 @@ h2{
 
 .photo1 {
   text-align: left;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   /* text-align:center */
 }
 
@@ -98,11 +119,15 @@ p{
   /* width: 100%; */
   display: flex;
   flex-wrap: wrap;
+  overflow: scroll; 
+  height: 100vh; 
+  background: #dfd9c7;
 }
 
 .pictures{
-  width: 100px;
-  height: 100px;
-}
+  width: 200px;
+  height: 200px;
+  margin: 1%;
+} 
 
 </style>
