@@ -8,7 +8,7 @@ html, body, #app {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  background: #e6ecf1;
+  background: #ebe7bb;
   font-family: "Roboto", sans-serif;
 }
 

@@ -1,22 +1,24 @@
 <template>
   <div id="mypage">
-    <h1>Profile</h1>
-    <div class="user-info">
-      <div class="photo1">
-        <img src="@/assets/S__835622.jpg">
+    <div class="profile">
+      <h1>Profile</h1>
+      <div class="user-info">
+        <div class="photo1">
+          <img src="@/assets/S__835622.jpg">
+        </div>
+        <h2>name</h2>
+        <p>根本</p>
+        <h2>comment</h2>
+        <p>
+          あいうえおかきちつてと
+        </p>
       </div>
-      <h2>name</h2>
-      <p>根本</p>
-      <h2>comment</h2>
-      <p>
-        あいうえおかきちつてと
-      </p>
     </div>
-  </div>
 
-  <div id="mypage2">
-    <div class="pictures" v-for="test,index in testarray" :key="index">
-      <img v-bind:src="test.picture">
+    <div id="main">
+      <div class="pictures" v-for="test,index in testarray" :key="index">
+        <img v-bind:src="test.picture">
+      </div>
     </div>
   </div>
 </template>
@@ -60,8 +62,8 @@ export default{
 }
 
 h1{
-  color: white;
-  background: #816071;
+  color: rgb(82, 74, 7);
+  background: #f0d069;
   text-align:center;
   font-size: 50px;
   /* フォントが変わらん */
@@ -93,7 +95,7 @@ p{
 }
 
 #mypage2{
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-wrap: wrap;
 }
