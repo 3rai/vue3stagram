@@ -4,16 +4,16 @@
 
 <style>
 html, body, #app {
-  height: 100%;
+  width:100%;
+  /* height: 100%; */
   margin: 0;
-  overflow: hidden;
-  background: #e6ecf1;
+  /* overflow: hidden; */
+  background: #ebe7bb;
   font-family: "Roboto", sans-serif;
 }
 
 #app {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
