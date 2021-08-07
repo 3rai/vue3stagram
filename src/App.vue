@@ -5,9 +5,9 @@
 <style>
 html, body, #app {
   width:100%;
-  height: 100%;
+  /* height: 100%; */
   margin: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   background: #ebe7bb;
   font-family: "Roboto", sans-serif;
 }

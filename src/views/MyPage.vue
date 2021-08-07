@@ -116,21 +116,22 @@ h2{
 } */
 
 #main{
-  /* width: 100%; */
+  width: 90%;
   display: flex;
+  gap: 0 3.5%;
   flex-wrap: wrap;
-  overflow: scroll; 
-  height: 100vh; 
+  /* overflow: scroll;  */
+  /* height: 100vh;  */
   margin-left: auto;
   margin-right: auto;
-  width: 80em;
   background: #dfd9c7;
+  /* justify-content: space-between; */
 }
 
 .pictures{
-  width: 200px;
-  height: 200px;
-  margin: 1%;
+  width: 31%;
+  height: auto;
+  margin-bottom: 3%;
 } 
 
 </style>
