@@ -94,7 +94,7 @@ p{
   text-align: left;
 }
 
-#mypage2{
+#main{
   /* width: 100%; */
   display: flex;
   flex-wrap: wrap;
