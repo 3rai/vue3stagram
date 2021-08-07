@@ -12,11 +12,12 @@
         あいうえおかきちつてと
       </p>
     </div>
-  
-  <div class="pictures">
-    <img src="@/assets/S__835622.jpg">
   </div>
 
+  <div id="mypage2">
+    <div class="pictures" v-for="test,index in testarray" :key="index">
+      <img v-bind:src="test.picture">
+    </div>
   </div>
 </template>
 
@@ -27,17 +28,18 @@ export default{
     return {
       testarray:{
         "one":{
-          "picture":"@/assets/S__835622.jpg"
+          "picture":"/img/S__835622.5651814a.jpg"
         }, 
         "two":{
-          "picture":"@/assets/S__835622.jpg"
+          "picture": "/img/S__835622.5651814a.jpg"
         }, 
         "three":{
-          "picture":"@/assets/S__835622.jpg"
+          "picture": "/img/S__835622.5651814a.jpg"
         }, 
         "four":{
-          "picture":"@/assets/S__835622.jpg"
-       }
+          "picture": "/img/S__835622.5651814a.jpg"
+        }
+      }
     }
   },
   methods: {
@@ -90,8 +92,13 @@ p{
   text-align: left;
 }
 
+#mypage2{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .pictures{
-  text-align: left;
   width: 100px;
   height: 100px;
 }
