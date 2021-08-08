@@ -30,37 +30,37 @@ export default{
     return {
       testarray:{
         "one":{
-          "picture":"/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         }, 
         "two":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         }, 
         "three":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         }, 
         "four":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "five":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "six":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "seven":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "eight":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "nine":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "ten":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         },
         "eleven":{
-          "picture": "/img/S__835622.5651814a.jpg"
+          "picture": require("@/assets/S__835622.jpg")
         }
       }
     }
@@ -106,8 +106,20 @@ h2{
 .photo1 {
   width: 200px;
   height: 200px;
-  object-fit: cover;
   /* border-radius: 50%; */
+}
+
+.photo1 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#main img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* p{
