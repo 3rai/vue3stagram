@@ -15,6 +15,12 @@
           <i class="fas fa-home fa-lg"></i>
         </div>
         <button class="logout-button" @click="logout">ログアウト</button>
+        <div class="reg-cta">
+          <!--設定アイコン-->
+          <label for="reg" @click="this.$router.push('/register')">
+            <i class="fas fa-cog fa-lg"></i>
+          </label>
+        </div>
         <div class="upload-cta">
           <input
             type="file"
@@ -77,7 +83,6 @@ export default {
     }
   }
 }
-//miyazaki
 </script>
 
 <style>
@@ -119,7 +124,9 @@ export default {
 .phone-header .next-cta {
   right: 10px;
 }
-
+.phone-body{
+  height: 514.6px;
+}
 .feed {
   height: 100%;
   overflow-y: scroll;
@@ -175,6 +182,13 @@ export default {
   cursor: pointer;
   z-index: 10;
 }
+.phone-footer .reg-cta {
+  position: absolute;
+  right: 50px;
+  top: 6px;
+  cursor: pointer;
+}
+
 .phone-footer .upload-cta {
   position: absolute;
   right: 10px;
