@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 // mock data
 import mock_posts from "@/data/posts";
 import mock_filters from "@/data/filters";
+import db from 'firebase' ;
 
 export default createStore({
   state: {
@@ -102,6 +103,8 @@ export default createStore({
         caption: this.state.inputCaption,
         filter: this.state.selectedFilter
       };
+      context.commit('setSelectedFilter',postData.filter );
+      db.firestore().collection('posts').doc().set(postData)
       context.commit('addPosts', postData);
     },
     likeAction(context, contentId){
