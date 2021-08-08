@@ -7,10 +7,10 @@
           <img src="@/assets/S__852356.jpg">
         </div>
         <h2>name</h2>
-        <p>根本</p>
+        <p>根本凪</p>
         <h2>comment</h2>
         <p>
-          あいうえおかきちつてと
+          はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
         </p>
       </div>
     </div>
@@ -20,7 +20,16 @@
         <img v-bind:src="test.picture">
       </div>
     </div>
+
+    <ul id="nav">
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">MYPAGE</a></li>
+      <li><a href="#">MENU3</a></li>
+      <li><a href="#">MENU4</a></li>
+    </ul>
+
   </div>
+
 </template>
 
 <script>
@@ -30,31 +39,31 @@ export default{
     return {
       testarray:{
         "one":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__884742.jpg")
         }, 
         "two":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__884744.jpg")
         }, 
         "three":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__884745.jpg")
         }, 
         "four":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__884746.jpg")
         },
         "five":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__884747.jpg")
         },
         "six":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__884748.jpg")
         },
         "seven":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__892931.jpg")
         },
         "eight":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__892933.jpg")
         },
         "nine":{
-          "picture": require("@/assets/S__835622.jpg")
+          "picture": require("@/assets/S__892934.jpg")
         },
         "ten":{
           "picture": require("@/assets/S__835622.jpg")
@@ -86,8 +95,8 @@ h1{
   color: rgb(82, 74, 7);
   background: #f0d069;
   text-align:center;
-  font-size: 50px;
-  /* フォントが変わらん */
+  font-size: 30px;
+  margin-bottom: 10px;
   font-family: 'メイリオ', Meiryo,'ヒラギノ角ゴシック','Hiragino Sans','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
 }
 
@@ -99,8 +108,12 @@ h1{
 }
 
 h2{
+  font-size: 30px;
   text-align: center;
   padding-left: 10px;
+  margin-top: 5px;
+  text-decoration:underline;
+  text-decoration-color:#849e26;
 }
 
 .photo1 {
@@ -122,9 +135,11 @@ h2{
   object-fit: cover;
 }
 
-/* p{
-  text-align: left;
-} */
+p{
+  font-size: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
 
 #main{
   width: 90%;
@@ -136,6 +151,7 @@ h2{
   margin-left: auto;
   margin-right: auto;
   background: #dfd9c7;
+  margin-top: 30px;
   /* justify-content: space-between; */
 }
 
@@ -144,5 +160,40 @@ h2{
   height: auto;
   margin-bottom: 3%;
 } 
+
+#nav {
+  list-style: none;
+}
+ 
+#nav li {
+  width: 140px;
+  text-align: center;
+}
+ 
+#nav {
+  list-style: none;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+ 
+#nav li {
+  width: 25%;
+  text-align: center;
+  background-color: rgb(223, 162, 72);
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  /* margin-right: 2px; */
+}
+ 
+#nav li a {
+  text-decoration: none;
+  color: rgb(253, 251, 244);
+  font-weight: bold;
+  padding: 20px;
+}
+
 
 </style>
