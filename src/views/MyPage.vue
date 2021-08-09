@@ -105,6 +105,7 @@ h1 {
   background: #f0d069;
   text-align: center;
   font-size: 30px;
+  margin: 0;
   margin-bottom: 10px;
   font-family: "メイリオ", Meiryo, "ヒラギノ角ゴシック", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
