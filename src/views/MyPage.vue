@@ -7,11 +7,11 @@
           <img src="@/assets/S__852356.jpg">
         </div>
         <h2>name</h2>
-        <p>根本凪</p>
+        <p1>根本</p1>
         <h2>comment</h2>
-        <p>
+        <p2>
           はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-        </p>
+        </p2>
       </div>
     </div>
 
@@ -22,11 +22,14 @@
     </div>
 
     <ul id="nav">
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">MYPAGE</a></li>
+      <li><a href="http://localhost:8080/">HOME</a></li>
+      <li><a href="http://localhost:8080/MyPage">MYPAGE</a></li>
       <li><a href="#">MENU3</a></li>
-      <li><a href="#">MENU4</a></li>
     </ul>
+
+    <div class="home-cta" >
+          <i class="fas fa-home fa-lg"></i>
+    </div>
 
   </div>
 
@@ -108,7 +111,7 @@ h1{
 }
 
 h2{
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   padding-left: 10px;
   margin-top: 5px;
@@ -135,7 +138,13 @@ h2{
   object-fit: cover;
 }
 
-p{
+p1{
+  font-size: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+p2{
   font-size: 20px;
   margin-left: 20%;
   margin-right: 20%;
@@ -179,7 +188,7 @@ p{
 }
  
 #nav li {
-  width: 25%;
+  width: 33.3%;
   text-align: center;
   background-color: rgb(223, 162, 72);
   float: left;
@@ -193,6 +202,11 @@ p{
   color: rgb(253, 251, 244);
   font-weight: bold;
   padding: 20px;
+}
+
+.home-cta {
+  height: 35px;
+  position: sticky;
 }
 
 
