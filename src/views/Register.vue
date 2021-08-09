@@ -1,20 +1,19 @@
 <template>
   <div class = "register">
-    <div class="reg">
-      <div class="reg-header">
-        <img src="@/assets/okashilogo.png">
-        <!--stepが切り替わることでBodyの内容も切り替わる-->
-        <a class="cancel-cta" v-if="step === 2 || step === 3 || step === 4" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2 || step === 3 || step === 4" @click="goToHome">Done</a>
-      </div>
-      <!--Body部分RegisterBodyで内容記述-->
-      <reg-body
-        v-model="caption"
-      />
-      <div class="reg-footer">
-        <!--
-        <div class="reg-cta">
-          ファイルマネージャー開く
+    <div class="reg-header">
+      <img src="@/assets/okashilogo.png">
+    </div>
+    <!--Body部分RegisterBodyで内容記述-->
+    <div class="reg-body">
+      <div v-if="step === 1" class="feed" v-dragscroll.y>
+        <div class="description">
+          ニックネームとプロフィール画像を設定できます
+        </div>
+        <div class="reg-nickname">
+          <p>ニックネーム</p>
+          <input class="nickname-form" type="text" v-model="nickname"/>
+        </div>
+        <div class="reg-profileimage">
           <input
             type="file"
             name="file"
@@ -23,24 +22,87 @@
             @change="uploadImage"
             :disabled="step !== 1"
           >
-          設定アイコン
           <label for="file">
-            <i class="fas fa-cog fa-lg"></i>
+            <img src="@/assets/reg_profileimage.png" alt="register_profile" width="250" height="50"/>
           </label>
+        </div>
+        <div class="reg-parameter">
+          <button @click="this.$store.commit('setStep', 4)"><img src="@/assets/reg_parameter.png" alt="register_profile" width="250" height="50"/></button>
+        </div>
+        <div class="reg-fin">
+          <button @click="this.$router.push('/')"><img src="@/assets/reg_finish.png" alt="register_finish" width="250" height="50"/></button>
+        </div>
+      </div>
+      <div v-if="step === 3">
+        <div
+          class="selected-image"
+          :class="selectedFilter"
+          :style="{ backgroundImage: 'url(' + image + ')' }"
+        ></div>
+        <!--
+        <div class="filter-container" v-dragscroll.x>
+          <filter-type
+            v-for="filter in filters"
+            :filter="filter"
+            :image="image"
+            :key="filters.indexOf(filter)"
+          ></filter-type>
         </div>
         -->
       </div>
+      <div v-if="step === 2">
+        <!--
+        <div
+          class="selected-image"
+          :class="selectedFilter"
+          :style="{ backgroundImage: 'url(' + image + ')' }"
+        ></div>
+        -->
+        <div class="name-container">
+          <textarea
+            class="name-input"
+            placeholder="Write your nickname..."
+            type="text"
+            :value="value"
+            @input="$emit('input', $event.target.value)"
+          ></textarea>
+        </div>
+      </div>
+    
+    </div>
+
+    <div class="reg-footer">
+      <!--
+      <div class="reg-cta">
+        ファイルマネージャー開く
+        <input
+          type="file"
+          name="file"
+          id="file"
+          class="inputfile"
+          @change="uploadImage"
+          :disabled="step !== 1"
+        >
+        設定アイコン
+        <label for="file">
+          <i class="fas fa-cog fa-lg"></i>
+        </label>
+      </div>
+      -->
     </div>
   </div>
 </template>
 
 <script>
-//RegisterBody.vueから読み込む
-import RegisterBody from "@/components/RegisterBody";
 export default{
   name: 'Register',
   components: {
-    "reg-body": RegisterBody
+
+  },
+  data(){
+    return{
+      nickname: "",
+    }
   },
   computed: {
     //stepを移動
@@ -88,53 +150,43 @@ export default{
   }
 }
 </script>
+
 <style>
-.reg {
-  background-color: white;
-  height: 620px;
-  width: 375px;
-  overflow: hidden;
+.register{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .reg-header {
-  height: auto;
-  width: 375px;
+  height: 100px;
+  width: 100%;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   background: #fafafa;
   border-bottom: 1px solid #eeeeee;
   z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .reg-header img {
   max-width: 150px;
-  display: block;
-  margin: 0 auto;
-  padding-top: 6px;
-  padding-bottom: 6px;
 }
-.reg-header .cancel-cta,
-.reg-header .next-cta {
-  position: absolute;
-  top: 12px;
-  color: #209cee;
-  font-weight: bold;
-  cursor: pointer;
-}
-.reg-header .cancel-cta {
-  left: 10px;
-}
-.reg-header .next-cta {
-  right: 10px;
-}
-.reg-body{
-  height: 514.6px;
-}
+
 .feed {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  margin-right: -15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.description{
+  padding: 30px;
 }
 
 .name-container {
