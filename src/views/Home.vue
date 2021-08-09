@@ -109,7 +109,7 @@ export default {
 //miyazaki
 </script>
 
-<style>
+<style scoped>
 .home{
   width: 100%;
 }
@@ -122,21 +122,17 @@ export default {
 }
 
 .phone-header {
-  height: auto;
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+  height: 100px;
   background: #ebd160;
   border-bottom: 1px solid #eeeeee;
-  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 .phone-header img {
   max-width: 250px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 2%;
-  padding-top: 1px;
 }
 .phone-header .cancel-cta,
 .phone-header .next-cta {

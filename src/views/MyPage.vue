@@ -1,7 +1,9 @@
 <template>
   <div id="mypage">
+    <div class="phone-header">
+      <img src="@/assets/okashilogo.png">
+    </div>
     <div class="profile">
-      <h1>マイページ</h1>
       <div class="user-info">
         <div class="photo1">
           <img src="@/assets/S__884742.jpg" />
@@ -88,13 +90,31 @@ export default {
 
 <style scoped>
 #mypage {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-h1 {
+.phone-header {
+  width: 100%;
+  height: 100px;
+  background: #ebd160;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.phone-header img {
+  max-width: 250px;
+}
+
+.profile{
+  position: relative;
+}
+/* h1 {
   color: rgb(82, 74, 7);
   background: #f0d069;
   text-align: center;
@@ -103,7 +123,7 @@ h1 {
   margin-bottom: 10px;
   font-family: "メイリオ", Meiryo, "ヒラギノ角ゴシック", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
-}
+} */
 
 .user-info {
   width: 100%;
@@ -132,7 +152,7 @@ h2 {
   border-radius: 50%;
 }
 
-img {
+.photo1 img, main img {
   position: absolute;
   top: 0;
   left: 0;

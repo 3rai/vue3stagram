@@ -1,6 +1,6 @@
 <template>
   <div class = "register">
-    <div class="reg-header">
+    <div class="phone-header">
       <img src="@/assets/okashilogo.png">
     </div>
     <!--Body部分RegisterBodyで内容記述-->
@@ -221,7 +221,7 @@ export default{
 }
 </script>
 
-<style>
+<style scoped>
 .register{
   width: 100%;
   display: flex;
@@ -229,21 +229,18 @@ export default{
   justify-content: center;
 }
 
-.reg-header {
-  height: 100px;
+.phone-header {
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  background: #fafafa;
+  height: 100px;
+  background: #ebd160;
   border-bottom: 1px solid #eeeeee;
-  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
-.reg-header img {
-  max-width: 150px;
+.phone-header img {
+  max-width: 250px;
 }
 
 .feed {
