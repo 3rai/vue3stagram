@@ -32,15 +32,20 @@
       </div>
     </div>
   </div>
+
+  <Footer />
+
 </template>
 
 <script>
 //RegisterBody.vueから読み込む
 import RegisterBody from "@/components/RegisterBody";
+import Footer from "@/components/Footer.vue";
 export default{
   name: 'Register',
   components: {
-    "reg-body": RegisterBody
+    "reg-body": RegisterBody,
+    Footer
   },
   computed: {
     //stepを移動
