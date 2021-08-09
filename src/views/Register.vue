@@ -9,63 +9,21 @@
         <div class="description">
           ニックネームとプロフィール画像を設定できます
         </div>
-        <div class="reg-nickname">
+        <div class="item nickname">
           <p>ニックネーム</p>
           <input class="nickname-form" type="text" v-model="nickname"/>
         </div>
-        <div class="reg-profileimage">
-          <input
-            type="file"
-            name="file"
-            id="file"
-            class="inputfile"
-            @change="uploadImage"
-            :disabled="step !== 1"
-          >
-          <label for="file">
-            <img src="@/assets/reg_profileimage.png" alt="register_profile" width="250" height="50"/>
+        <div class="item profileimage">
+          <p>プロフィール画像</p>
+          <label class="inputfile">
+            <input
+              type="file"
+              name="file"
+              id="file"
+              @change="uploadImage"
+              :disabled="step !== 1"
+            >ファイルを選択
           </label>
-        </div>
-        <div class="reg-parameter">
-          <button @click="this.$store.commit('setStep', 4)"><img src="@/assets/reg_parameter.png" alt="register_profile" width="250" height="50"/></button>
-        </div>
-        <div class="reg-fin">
-          <button @click="this.$router.push('/')"><img src="@/assets/reg_finish.png" alt="register_finish" width="250" height="50"/></button>
-        </div>
-      </div>
-      <div v-if="step === 3">
-        <div
-          class="selected-image"
-          :class="selectedFilter"
-          :style="{ backgroundImage: 'url(' + image + ')' }"
-        ></div>
-        <!--
-        <div class="filter-container" v-dragscroll.x>
-          <filter-type
-            v-for="filter in filters"
-            :filter="filter"
-            :image="image"
-            :key="filters.indexOf(filter)"
-          ></filter-type>
-        </div>
-        -->
-      </div>
-      <div v-if="step === 2">
-        <!--
-        <div
-          class="selected-image"
-          :class="selectedFilter"
-          :style="{ backgroundImage: 'url(' + image + ')' }"
-        ></div>
-        -->
-        <div class="name-container">
-          <textarea
-            class="name-input"
-            placeholder="Write your nickname..."
-            type="text"
-            :value="value"
-            @input="$emit('input', $event.target.value)"
-          ></textarea>
         </div>
       </div>
     
@@ -189,28 +147,19 @@ export default{
   padding: 30px;
 }
 
-.name-container {
-  height: 210px;
+.item{
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-}
-.name-container textarea {
-  border: 0;
-  font-size: 1rem;
-  width: 100%;
-  padding: 10px;
-  border-bottom: 1px solid #eeeeee;
-}
-.name-container textarea:focus {
-  outline: 0;
 }
 
-.selected-image {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  height: 330px;
+.inputfile{
+  background-image: url("/reg_profileimage.png");
+  cursor: pointer;
+  padding: 5px;
+}
+.inputfile input[type="file"]{
+  display: none;
 }
 
 .reg-footer {
