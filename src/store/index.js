@@ -9,6 +9,7 @@ export default createStore({
     /* 全体の状態 */
     user: {
       userName: undefined,
+      id: undefined,
       isLoggedIn: false,
     },
     step: 1,  // 画面状態
@@ -47,7 +48,8 @@ export default createStore({
       state.user.isLoggedIn = data;
     },
     setUserInfo(state, data){
-      state.user.userName = data;
+      state.user.userName = data.userName;
+      state.user.id = data.userId;
     },
     setStep(state, data){
       state.step = data;
@@ -97,6 +99,7 @@ export default createStore({
     sharePostAction(context){
       const postData = {
         username: this.state.user.userName,
+        userId: this.state.user.id,
         userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
         postImage: this.state.uploadImage,
         likes: 0,
@@ -104,9 +107,16 @@ export default createStore({
         filter: this.state.selectedFilter
       };
       context.commit('setSelectedFilter',postData.filter );
-      db.firestore().collection('posts').doc().set(postData)
+      db.firestore().collection('posts').doc().set(postData);
       context.commit('addPosts', postData);
     },
+    
+    ImageUrl(context, url){
+      this.state.uploadImage = url;
+      context.commit('setUploadImage', url);
+    },
+
+
     likeAction(context, contentId){
       const target = context.state.posts.find((v) => v.id === contentId);
       // DB側の情報更新

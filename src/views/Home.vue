@@ -41,10 +41,16 @@
 
 <script>
 import PhoneBody from "@/components/PhoneBody";
+import firebase from 'firebase'
 export default {
   name: 'Home',
   components: {
     "phone-body": PhoneBody
+  },
+  data(){
+    return {
+      uploadfile: null,
+    }
   },
   computed: {
     step(){
@@ -64,17 +70,35 @@ export default {
     uploadImage(evt) {
       const files = evt.target.files;
       if (!files.length) return;
+      this.uploadfile = files[0];
+
+
       const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(this.uploadfile);
+      
       reader.onload = evt => {
-        this.$store.commit('setUploadImage', evt.target.result);
+        const fileBase64 =  evt.target.result;
+        this.$store.commit('setUploadImage', fileBase64);
         this.$store.commit('setStep', 2);
+        console.log(evt);
       };
       // To enable reuploading of same files in Chrome
       document.querySelector("#file").value = "";
     },
     sharePost() {
+      const storageRef = firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name)
+      storageRef.put(this.uploadfile).then(() => {
+        // アップロードした画像のURLを取得
+        firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name).getDownloadURL()
+          .then((url) => {
+              // アップロードした画像のURLと画像名をDBに保存
+              this.$store.dispatch('ImageUrl', {url: url} )
+          }).catch((error) => {
+              console.log(error)
+          })
+      })
       this.$store.dispatch('sharePostAction');
+      this.uploadfile = null;
       this.goToHome();
     },
     logout(){
