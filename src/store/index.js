@@ -86,19 +86,12 @@ export default createStore({
       // ここも色々やってから
       context.commit('setIsLoggedIn', false);
     },
-    initPostData(context){
+    async initPostData(context){
       //データベースを使う場合など，ここでデータ取得などを行うと良いかも
-      const posts = [];
-      db.collection("posts").get().then((docs) => {
-      // success
-       if (docs.exists) {
-          docs.fotEach(doc => {
-            posts.push(doc.data())
-          })
-        }
-        console.log(posts)
-      }).catch(error => {
-       console.log(error)
+      const postRef = db.firestore().collection('posts');
+      const posts = await postRef.get();
+      posts.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
       })
       context.commit('setPosts', mock_posts);
     },
