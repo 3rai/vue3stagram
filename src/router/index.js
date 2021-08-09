@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Auth from '@/views/Auth.vue'
 import MyPage from '@/views/MyPage.vue'
+import Register from '@/views/Register.vue'
 
 import store from '@/store/index.js'
 
@@ -23,7 +24,12 @@ const routes = [
     component: MyPage,
     //meta: { requiresAuth: true }
   },
-  
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+    meta: { requiresAuth: true }
+  }
 ]
 
 const router = createRouter({
