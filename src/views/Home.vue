@@ -2,7 +2,7 @@
   <div class="home">
     <div class="app-phone">
       <div class="phone-header">
-        <img src="@/assets/okashilogo.png">
+        <img src="@/assets/vuestagram.png">
         <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
         <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
         <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
@@ -15,12 +15,6 @@
           <i class="fas fa-home fa-lg"></i>
         </div>
         <button class="logout-button" @click="logout">ログアウト</button>
-        <div class="reg-cta">
-          <!--設定アイコン-->
-          <label for="reg" @click="this.$router.push('/register')">
-            <i class="fas fa-cog fa-lg"></i>
-          </label>
-        </div>
         <div class="upload-cta">
           <input
             type="file"
@@ -83,13 +77,18 @@ export default {
     }
   }
 }
+//miyazaki
 </script>
 
 <style>
+.home{
+  width: 100%;
+}
+
 .app-phone {
   background-color: white;
-  height: 620px;
-  width: 375px;
+  /* height: 620px; */
+  width: 100%;
   overflow: hidden;
 }
 
@@ -104,11 +103,10 @@ export default {
   z-index: 99;
 }
 .phone-header img {
-  max-width: 150px;
+  max-width: 120px;
   display: block;
   margin: 0 auto;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 1px;
 }
 .phone-header .cancel-cta,
 .phone-header .next-cta {
@@ -124,9 +122,7 @@ export default {
 .phone-header .next-cta {
   right: 10px;
 }
-.phone-body{
-  height: 514.6px;
-}
+
 .feed {
   height: 100%;
   overflow-y: scroll;
@@ -140,6 +136,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .caption-container textarea {
   border: 0;
   font-size: 1rem;
@@ -182,13 +179,6 @@ export default {
   cursor: pointer;
   z-index: 10;
 }
-.phone-footer .reg-cta {
-  position: absolute;
-  right: 50px;
-  top: 6px;
-  cursor: pointer;
-}
-
 .phone-footer .upload-cta {
   position: absolute;
   right: 10px;

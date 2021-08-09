@@ -8,6 +8,8 @@
         </div>
         <h2>なまえ</h2>
         <p1>根本</p1>
+        <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
+        <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p>
         <h2>ひとこと</h2>
         <p2>
           はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
@@ -25,30 +27,22 @@
       </div>
     </div>
 
-    <ul id="nav">
-      <li>
-        <i class="fas fa-home fa-lg"></i
-        ><a href="http://localhost:8080/">ホーム</a>
-      </li>
-      <li>
-        <i class="fas fa-user fa-lg"></i
-        ><a href="http://localhost:8080/MyPage">マイページ</a>
-      </li>
-      <li>
-        <i class="fas fa-cog fa-lg"></i
-        ><a href="http://localhost:8080/register">編集</a>
-      </li>
-    </ul>
-
     <!-- <div class="home-cta" >
           <i class="fas fa-home fa-lg"></i>
     </div> -->
+
+    <Footer />
+
   </div>
 </template>
 
 <script>
+import Footer from "@/components/Footer.vue";
 export default {
   name: "mypage",
+  components: {
+    Footer
+  },
   data() {
     return {
       testarray: {
@@ -189,42 +183,4 @@ p2 {
   display: block;
 }
 
-#nav {
-  list-style: none;
-}
-
-#nav li {
-  width: 140px;
-  text-align: center;
-}
-
-#nav {
-  list-style: none;
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
-
-#nav li {
-  width: 33.3%;
-  text-align: center;
-  background-color: rgb(223, 162, 72);
-  float: left;
-  height: 50px;
-  line-height: 50px;
-  /* margin-right: 2px; */
-}
-
-#nav li a {
-  text-decoration: none;
-  color: rgb(253, 251, 244);
-  font-weight: bold;
-  padding: 20px;
-}
-
-.home-cta {
-  height: 35px;
-  position: sticky;
-}
 </style>
