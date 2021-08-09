@@ -3,6 +3,10 @@ import Home from '@/views/Home.vue'
 import Auth from '@/views/Auth.vue'
 import MyPage from '@/views/MyPage.vue'
 import Register from '@/views/Register.vue'
+// import 'bootstrap/dist/css/bootstrap.css' // add
+// import 'bootstrap-vue/dist/bootstrap-vue.css' // add
+
+// Vue.config.productionTip = false
 
 import store from '@/store/index.js'
 
@@ -11,7 +15,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { requiresAuth: true }
+    // meta: { requiresAuth: true }
   },
   {
     path: '/auth',
@@ -28,7 +32,7 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
-    meta: { requiresAuth: true }
+    // meta: { requiresAuth: true }
   }
 ]
 
