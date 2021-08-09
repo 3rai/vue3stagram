@@ -1,34 +1,147 @@
 <template>
   <div class = "register">
-    <div class="reg">
-      <div class="reg-header">
-        <img src="@/assets/okashilogo.png">
-        <!--stepが切り替わることでBodyの内容も切り替わる-->
-        <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2 || step === 3" @click="goToHome">Done</a>
-      </div>
-      <!--Body部分RegisterBodyで内容記述-->
-      <reg-body
-        v-model="caption"
-      />
-      <div class="reg-footer">
-        <!--
-        <div class="reg-cta">
-          ファイルマネージャー開く
-          <input
-            type="file"
-            name="file"
-            id="file"
-            class="inputfile"
-            @change="uploadImage"
-            :disabled="step !== 1"
-          >
-          設定アイコン
-          <label for="file">
-            <i class="fas fa-cog fa-lg"></i>
-          </label>
+    <div class="reg-header">
+      <img src="@/assets/okashilogo.png">
+    </div>
+    <!--Body部分RegisterBodyで内容記述-->
+    <div class="reg-body">
+      <div v-if="step === 1" class="feed" v-dragscroll.y>
+        <div class="description">
+          ニックネームとプロフィール画像を設定できます
         </div>
-        -->
+        <div class="item nickname">
+          <p>ニックネーム</p>
+          <input class="nickname-form" type="text" v-model="nickname"/>
+        </div>
+        <div class="item profileimage">
+          <p>プロフィール画像</p>
+          <label class="inputfile">
+            <input
+              type="file"
+              name="file"
+              id="file"
+              @change="uploadProfileImage"
+              :disabled="step !== 1"
+            >ファイルを選択
+          </label>
+          <div
+          class="selected-image"
+          :class="selectedFilter"
+          :style="{ backgroundImage: 'url(' + image + ')' }"
+          ></div>
+        </div>
+        <div class="next">
+          <button @click="check; this.$store.commit('setStep', 2)">次へ</button>
+        </div>
+      </div>
+      <div v-if="step === 2" class="feed" v-dragscroll.y>
+        <div class="description">
+          パラメータを設定できます
+        </div>
+        <div class="selected-parameter">
+          <div class="parameter-name">
+            <p>種類</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-type">
+                <option value="" hidden>選択してください</option>
+                <option value="和菓子" disabled>和菓子</option>
+                <option value="もちもの">もちもの</option>
+                <option value="蒸し物">蒸し物</option>
+                <option value="練り物">練り物</option>
+                <option value="あんもの">あんもの</option>
+                <option value="焼き物">焼き物</option>
+                <option value="豆菓子">豆菓子</option>
+                <option value="米菓子">米菓子</option>
+                <option value="あめもの">あめもの</option>
+                <option value="揚げ物">揚げ物</option>
+                <option value="洋菓子" disabled>洋菓子</option>
+                <option value="スポンジケーキ類">スポンジケーキ類</option>
+                <option value="バターケーキ類">バターケーキ類</option>
+                <option value="シュー菓子">シュー菓子</option>
+                <option value="タルト類">タルト類</option>
+                <option value="ワッフル類">ワッフル類</option>
+                <option value="パイ類">パイ類</option>
+                <option value="キャンデー類">キャンデー類</option>
+                <option value="チョコレート類">チョコレート類</option>
+                <option value="チューインガム類">チューイングガム類</option>
+                <option value="ビスケット類">ビスケット類</option>
+                <option value="スナック類">スナック類</option>
+              </select>
+            </p>
+          </div>
+          <div class="parameter-name">
+            <p>味</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-taste">
+                <option value="" hidden>選択してください</option>
+                <option value="酸っぱい">酸っぱい</option>
+                <option value="甘酸っぱい">甘酸っぱい</option>
+                <option value="甘い">甘い</option>
+                <option value="甘さ控えめ">甘さ控えめ</option>
+                <option value="激甘">激甘</option>
+                <option value="甘辛">甘辛・甘じょっぱい</option>
+                <option value="辛い">辛い</option>
+                <option value="激辛">激辛</option>
+                <option value="塩気">塩気</option>
+                <option value="塩分控えめ">塩分控えめ</option>
+                <option value="苦い">苦い</option>
+                <option value="香ばしい">香ばしい</option>
+                <option value="フルーティ">フルーティ</option>
+                <option value="スパイシー">スパイシー</option>
+                <option value="スモーキー">スモーキー</option>
+                <option value="その他(味)">その他</option>
+              </select>
+            </p>
+          </div>
+          <div class="parameter-name">
+            <p>食感</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-texture">
+                <option value="" hidden>選択してください</option>
+                <option value="もちもち">もちもち</option>
+                <option value="ジューシー">ジューシー</option>
+                <option value="トロトロ">トロトロ</option>
+                <option value="サクサク">サクサク</option>
+                <option value="ふわふわ">ふわふわ</option>
+                <option value="ふわトロ">ふわトロ</option>
+                <option value="なめらか">なめらか</option>
+                <option value="カリカリ">カリカリ</option>
+                <option value="パリパリ">パリパリ</option>
+                <option value="サクふわ">サクふわ</option>
+                <option value="サクトロ">サクトロ</option>
+                <option value="弾力">弾力</option>
+                <option value="しっとり">しっとり</option>
+                <option value="その他(食感)">その他</option>
+              </select>
+            </p>
+          </div>
+          <div class="parameter-name">
+            <p>性格</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-chara">
+                <option value="" hidden>選択してください</option>
+                <option value="上品">上品</option>          
+                <option value="贅沢">贅沢</option>          
+                <option value="可愛い">可愛い</option>          
+                <option value="大人">大人</option>          
+                <option value="ヘルシー">ヘルシー</option>          
+                <option value="無添加">無添加</option>          
+                <option value="季節限定">季節限定</option>          
+                <option value="定番">定番</option>          
+                <option value="伝統">伝統</option>          
+                <option value="その他(性格)">その他</option>
+              </select>
+            </p> 
+          </div>
+        </div>         
       </div>
     </div>
   </div>
@@ -38,14 +151,19 @@
 </template>
 
 <script>
-//RegisterBody.vueから読み込む
-import RegisterBody from "@/components/RegisterBody";
+//import RegisterBody from "@/components/RegisterBody";
 import Footer from "@/components/Footer.vue";
 export default{
   name: 'Register',
   components: {
-    "reg-body": RegisterBody,
     Footer
+
+  },
+  data(){
+    return{
+      nickname: "",
+      profileimage: null,
+    }
   },
   computed: {
     //stepを移動
@@ -55,7 +173,10 @@ export default{
     //Body部分の何か
     caption(){
       return this.$store.getters.getInputCaption;
-    }
+    },
+    image(){
+      return this.$store.getters.getUploadImage;
+    },
   },
   //
   created(){
@@ -69,14 +190,14 @@ export default{
     },
 
     //ファイルマネージャー開いて画像を選択してもらう？ここでは使わない
-    uploadImage(evt){
+    uploadProfileImage(evt){
       const files = evt.target.files;
       if(!files.length) return;
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
         this.$store.commit('setUploadImage', evt.target.result);
-        this.$store.commit('setStep', 2);
+        //this.$store.commit('setStep', 2);
       };
       document.querySelector("#file").value = "";
     },
@@ -89,83 +210,76 @@ export default{
     logout(){
       this.$store.dispatch('logout');
       this.$store.push('/auth');
+    },
+    check(){
+      console.log(
+        this.nickname,
+        this.profileimage
+      )
     }
   }
 }
 </script>
+
 <style>
-.reg {
-  background-color: white;
-  height: 620px;
-  width: 375px;
-  overflow: hidden;
+.register{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .reg-header {
-  height: auto;
-  width: 375px;
+  height: 100px;
+  width: 100%;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   background: #fafafa;
   border-bottom: 1px solid #eeeeee;
   z-index: 99;
-}
-.reg-header img {
-  max-width: 150px;
-  display: block;
-  margin: 0 auto;
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.reg-header .cancel-cta,
-.reg-header .next-cta {
-  position: absolute;
-  top: 12px;
-  color: #209cee;
-  font-weight: bold;
-  cursor: pointer;
-}
-.reg-header .cancel-cta {
-  left: 10px;
-}
-.reg-header .next-cta {
-  right: 10px;
-}
-.reg-body{
-  height: 514.6px;
-}
-.feed {
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin-right: -15px;
-}
-
-.name-container {
-  height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.name-container textarea {
-  border: 0;
-  font-size: 1rem;
-  width: 100%;
-  padding: 10px;
-  border-bottom: 1px solid #eeeeee;
-}
-.name-container textarea:focus {
-  outline: 0;
+.reg-header img {
+  max-width: 150px;
 }
 
+.feed {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.description{
+  padding: 30px;
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.inputfile input[type="file"]{
+  display: none;
+}
+.inputfile{
+  background-image: url("/static/reg_profileimage.png");
+  cursor: pointer;
+  padding: 5px;
+}
 .selected-image {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   height: 330px;
-}
 
+}
 .reg-footer {
   height: 35px;
   width: 375px;
