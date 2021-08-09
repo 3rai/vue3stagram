@@ -1,27 +1,20 @@
 <template>
-  <div class="home">
-    <div class="app-phone">
-      <div class="phone-header">
+  <div class = "register">
+    <div class="reg">
+      <div class="reg-header">
         <img src="@/assets/okashilogo.png">
+        <!--stepが切り替わることでBodyの内容も切り替わる-->
         <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
-        <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
+        <a class="next-cta" v-if="step === 2 || step === 3" @click="goToHome">Done</a>
       </div>
-      <phone-body
+      <!--Body部分RegisterBodyで内容記述-->
+      <reg-body
         v-model="caption"
       />
-      <div class="phone-footer">
-        <div class="home-cta" @click="goToHome">
-          <i class="fas fa-home fa-lg"></i>
-        </div>
-        <button class="logout-button" @click="logout">ログアウト</button>
+      <div class="reg-footer">
+        <!--
         <div class="reg-cta">
-          <!--設定アイコン-->
-          <label for="reg" @click="this.$router.push('/register')">
-            <i class="fas fa-cog fa-lg"></i>
-          </label>
-        </div>
-        <div class="upload-cta">
+          ファイルマネージャー開く
           <input
             type="file"
             name="file"
@@ -30,70 +23,80 @@
             @change="uploadImage"
             :disabled="step !== 1"
           >
+          設定アイコン
           <label for="file">
-            <i class="far fa-plus-square fa-lg"></i>
+            <i class="fas fa-cog fa-lg"></i>
           </label>
         </div>
+        -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import PhoneBody from "@/components/PhoneBody";
-export default {
-  name: 'Home',
+//RegisterBody.vueから読み込む
+import RegisterBody from "@/components/RegisterBody";
+export default{
+  name: 'Register',
   components: {
-    "phone-body": PhoneBody
+    "reg-body": RegisterBody
   },
   computed: {
+    //stepを移動
     step(){
       return this.$store.getters.getStep;
     },
+    //Body部分の何か
     caption(){
       return this.$store.getters.getInputCaption;
     }
   },
-  created() {
+  //
+  created(){
     this.$store.dispatch('initPostData');
   },
-  methods: {
-    goToHome() {
+  methods:{
+
+    //Registerの初期画面に移動にしたい＝atep===1に移動
+    goToHome(){
       this.$store.dispatch('resetStepAction');
     },
-    uploadImage(evt) {
+
+    //ファイルマネージャー開いて画像を選択してもらう？ここでは使わない
+    uploadImage(evt){
       const files = evt.target.files;
-      if (!files.length) return;
+      if(!files.length) return;
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
         this.$store.commit('setUploadImage', evt.target.result);
         this.$store.commit('setStep', 2);
       };
-      // To enable reuploading of same files in Chrome
       document.querySelector("#file").value = "";
     },
-    sharePost() {
-      this.$store.dispatch('sharePostAction');
-      this.goToHome();
+    //Homeに移動は使わない
+    register_fin(){
+      //this.$store.dispatch('sharePostAction');
+      this.$router.push('/')
     },
+    //ログアウトは使わない
     logout(){
       this.$store.dispatch('logout');
-      this.$router.push('/auth');
+      this.$store.push('/auth');
     }
   }
 }
 </script>
-
 <style>
-.app-phone {
+.reg {
   background-color: white;
   height: 620px;
   width: 375px;
   overflow: hidden;
 }
 
-.phone-header {
+.reg-header {
   height: auto;
   width: 375px;
   position: sticky;
@@ -103,28 +106,28 @@ export default {
   border-bottom: 1px solid #eeeeee;
   z-index: 99;
 }
-.phone-header img {
+.reg-header img {
   max-width: 150px;
   display: block;
   margin: 0 auto;
   padding-top: 6px;
   padding-bottom: 6px;
 }
-.phone-header .cancel-cta,
-.phone-header .next-cta {
+.reg-header .cancel-cta,
+.reg-header .next-cta {
   position: absolute;
   top: 12px;
   color: #209cee;
   font-weight: bold;
   cursor: pointer;
 }
-.phone-header .cancel-cta {
+.reg-header .cancel-cta {
   left: 10px;
 }
-.phone-header .next-cta {
+.reg-header .next-cta {
   right: 10px;
 }
-.phone-body{
+.reg-body{
   height: 514.6px;
 }
 .feed {
@@ -134,20 +137,20 @@ export default {
   margin-right: -15px;
 }
 
-.caption-container {
+.name-container {
   height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.caption-container textarea {
+.name-container textarea {
   border: 0;
   font-size: 1rem;
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid #eeeeee;
 }
-.caption-container textarea:focus {
+.name-container textarea:focus {
   outline: 0;
 }
 
@@ -158,7 +161,7 @@ export default {
   height: 330px;
 }
 
-.phone-footer {
+.reg-footer {
   height: 35px;
   width: 375px;
   position: sticky;
@@ -168,42 +171,21 @@ export default {
   border-top: 1px solid #eeeeee;
   z-index: 99;
 }
-.phone-footer .home-cta {
-  position: absolute;
-  left: 10px;
-  top: 6px;
-  width: 30px;
-  cursor: pointer;
-}
-.phone-footer .logout-button {
-  position: absolute;
-  left: 50px;
-  top: 6px;
-  cursor: pointer;
-  z-index: 10;
-}
-.phone-footer .reg-cta {
-  position: absolute;
-  right: 50px;
-  top: 6px;
-  cursor: pointer;
-}
-
-.phone-footer .upload-cta {
+.reg-footer .reg-cta {
   position: absolute;
   right: 10px;
   top: 6px;
 }
-.phone-footer .upload-cta p {
+.reg-footer .reg-cta p {
   font-size: 0.63rem;
   position: absolute;
   left: -25px;
   top: 5px;
 }
-.phone-footer input[name=file] {
+.reg-footer input[name=file] {
   visibility: hidden;
 }
-.phone-footer label {
+.reg-footer label {
   cursor: pointer;
   z-index: 99;
 }
