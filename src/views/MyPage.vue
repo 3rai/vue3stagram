@@ -4,7 +4,7 @@
       <h1>マイページ</h1>
       <div class="user-info">
         <div class="photo1">
-          <img src="@/assets/S__852356.jpg" />
+          <img src="@/assets/S__884742.jpg" />
         </div>
         <h2>なまえ</h2>
         <p1>根本</p1>
@@ -127,19 +127,17 @@ h2 {
 }
 
 .photo1 {
+  position: relative;
   width: 200px;
   height: 200px;
   /* border-radius: 50%; */
 }
 
 .photo1 img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   border-radius: 50%;
 }
 
-#main img {
+img {
   position: absolute;
   top: 0;
   left: 0;
