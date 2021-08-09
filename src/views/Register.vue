@@ -153,13 +153,13 @@ export default{
   align-items: center;
 }
 
-.inputfile{
-  background-image: url("/reg_profileimage.png");
-  cursor: pointer;
-  padding: 5px;
-}
 .inputfile input[type="file"]{
   display: none;
+}
+.inputfile{
+  background-image: url("/static/reg_profileimage.png");
+  cursor: pointer;
+  padding: 5px;
 }
 
 .reg-footer {
