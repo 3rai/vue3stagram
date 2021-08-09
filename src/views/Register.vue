@@ -20,33 +20,132 @@
               type="file"
               name="file"
               id="file"
-              @change="uploadImage"
+              @change="uploadProfileImage"
               :disabled="step !== 1"
             >ファイルを選択
           </label>
+          <div
+          class="selected-image"
+          :class="selectedFilter"
+          :style="{ backgroundImage: 'url(' + image + ')' }"
+          ></div>
+        </div>
+        <div class="next">
+          <button @click="check; this.$store.commit('setStep', 2)">次へ</button>
         </div>
       </div>
-    
+      <div v-if="step === 2" class="feed" v-dragscroll.y>
+        <div class="description">
+          パラメータを設定できます
+        </div>
+        <div class="selected-parameter">
+          <div class="parameter-name">
+            <p>種類</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-type">
+                <option value="" hidden>選択してください</option>
+                <option value="和菓子" disabled>和菓子</option>
+                <option value="もちもの">もちもの</option>
+                <option value="蒸し物">蒸し物</option>
+                <option value="練り物">練り物</option>
+                <option value="あんもの">あんもの</option>
+                <option value="焼き物">焼き物</option>
+                <option value="豆菓子">豆菓子</option>
+                <option value="米菓子">米菓子</option>
+                <option value="あめもの">あめもの</option>
+                <option value="揚げ物">揚げ物</option>
+                <option value="洋菓子" disabled>洋菓子</option>
+                <option value="スポンジケーキ類">スポンジケーキ類</option>
+                <option value="バターケーキ類">バターケーキ類</option>
+                <option value="シュー菓子">シュー菓子</option>
+                <option value="タルト類">タルト類</option>
+                <option value="ワッフル類">ワッフル類</option>
+                <option value="パイ類">パイ類</option>
+                <option value="キャンデー類">キャンデー類</option>
+                <option value="チョコレート類">チョコレート類</option>
+                <option value="チューインガム類">チューイングガム類</option>
+                <option value="ビスケット類">ビスケット類</option>
+                <option value="スナック類">スナック類</option>
+              </select>
+            </p>
+          </div>
+          <div class="parameter-name">
+            <p>味</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-taste">
+                <option value="" hidden>選択してください</option>
+                <option value="酸っぱい">酸っぱい</option>
+                <option value="甘酸っぱい">甘酸っぱい</option>
+                <option value="甘い">甘い</option>
+                <option value="甘さ控えめ">甘さ控えめ</option>
+                <option value="激甘">激甘</option>
+                <option value="甘辛">甘辛・甘じょっぱい</option>
+                <option value="辛い">辛い</option>
+                <option value="激辛">激辛</option>
+                <option value="塩気">塩気</option>
+                <option value="塩分控えめ">塩分控えめ</option>
+                <option value="苦い">苦い</option>
+                <option value="香ばしい">香ばしい</option>
+                <option value="フルーティ">フルーティ</option>
+                <option value="スパイシー">スパイシー</option>
+                <option value="スモーキー">スモーキー</option>
+                <option value="その他(味)">その他</option>
+              </select>
+            </p>
+          </div>
+          <div class="parameter-name">
+            <p>食感</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-texture">
+                <option value="" hidden>選択してください</option>
+                <option value="もちもち">もちもち</option>
+                <option value="ジューシー">ジューシー</option>
+                <option value="トロトロ">トロトロ</option>
+                <option value="サクサク">サクサク</option>
+                <option value="ふわふわ">ふわふわ</option>
+                <option value="ふわトロ">ふわトロ</option>
+                <option value="なめらか">なめらか</option>
+                <option value="カリカリ">カリカリ</option>
+                <option value="パリパリ">パリパリ</option>
+                <option value="サクふわ">サクふわ</option>
+                <option value="サクトロ">サクトロ</option>
+                <option value="弾力">弾力</option>
+                <option value="しっとり">しっとり</option>
+                <option value="その他(食感)">その他</option>
+              </select>
+            </p>
+          </div>
+          <div class="parameter-name">
+            <p>性格</p>
+          </div>
+          <div class="parameter-sel">
+            <p>
+              <select name="parameter-chara">
+                <option value="" hidden>選択してください</option>
+                <option value="上品">上品</option>          
+                <option value="贅沢">贅沢</option>          
+                <option value="可愛い">可愛い</option>          
+                <option value="大人">大人</option>          
+                <option value="ヘルシー">ヘルシー</option>          
+                <option value="無添加">無添加</option>          
+                <option value="季節限定">季節限定</option>          
+                <option value="定番">定番</option>          
+                <option value="伝統">伝統</option>          
+                <option value="その他(性格)">その他</option>
+              </select>
+            </p> 
+          </div>
+        </div>         
+      </div>
     </div>
 
     <div class="reg-footer">
-      <!--
-      <div class="reg-cta">
-        ファイルマネージャー開く
-        <input
-          type="file"
-          name="file"
-          id="file"
-          class="inputfile"
-          @change="uploadImage"
-          :disabled="step !== 1"
-        >
-        設定アイコン
-        <label for="file">
-          <i class="fas fa-cog fa-lg"></i>
-        </label>
-      </div>
-      -->
     </div>
   </div>
 </template>
@@ -60,6 +159,7 @@ export default{
   data(){
     return{
       nickname: "",
+      profileimage: null,
     }
   },
   computed: {
@@ -70,7 +170,10 @@ export default{
     //Body部分の何か
     caption(){
       return this.$store.getters.getInputCaption;
-    }
+    },
+    image(){
+      return this.$store.getters.getUploadImage;
+    },
   },
   //
   created(){
@@ -84,14 +187,14 @@ export default{
     },
 
     //ファイルマネージャー開いて画像を選択してもらう？ここでは使わない
-    uploadImage(evt){
+    uploadProfileImage(evt){
       const files = evt.target.files;
       if(!files.length) return;
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
         this.$store.commit('setUploadImage', evt.target.result);
-        this.$store.commit('setStep', 2);
+        //this.$store.commit('setStep', 2);
       };
       document.querySelector("#file").value = "";
     },
@@ -104,6 +207,12 @@ export default{
     logout(){
       this.$store.dispatch('logout');
       this.$store.push('/auth');
+    },
+    check(){
+      console.log(
+        this.nickname,
+        this.profileimage
+      )
     }
   }
 }
@@ -161,7 +270,13 @@ export default{
   cursor: pointer;
   padding: 5px;
 }
+.selected-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 330px;
 
+}
 .reg-footer {
   height: 35px;
   width: 375px;
