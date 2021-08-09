@@ -144,9 +144,6 @@
         </div>         
       </div>
     </div>
-
-    <div class="reg-footer">
-    </div>
   </div>
 
   <Footer />
