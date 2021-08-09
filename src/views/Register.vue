@@ -141,7 +141,8 @@
               </select>
             </p> 
           </div>
-        </div>         
+        </div> 
+        <button @click="this.$store.commit('setStep', 1)">戻る</button>
       </div>
     </div>
   </div>
@@ -230,12 +231,12 @@ export default{
 }
 
 .reg-header {
-  height: 100px;
+  height: auto;
   width: 100%;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  background: #fafafa;
+  background: #ebd160;
   border-bottom: 1px solid #eeeeee;
   z-index: 99;
   display: flex;
@@ -243,7 +244,11 @@ export default{
   justify-content: center;
 }
 .reg-header img {
-  max-width: 150px;
+  max-width: 250px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2%;
+  padding-top: 1px;
 }
 
 .feed {

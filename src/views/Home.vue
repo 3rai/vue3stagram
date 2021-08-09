@@ -3,9 +3,6 @@
     <div class="app-phone">
       <div class="phone-header">
         <img src="@/assets/okashilogo.png">
-        <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2" @click="this.$store.commit('setStep', 3)">Next</a>
-        <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a>
       </div>
       <phone-body
         v-model="caption"
