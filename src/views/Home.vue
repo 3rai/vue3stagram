@@ -49,6 +49,7 @@ export default {
   },
   data(){
     return {
+      uploadfile: null,
     }
   },
   computed: {
@@ -69,22 +70,11 @@ export default {
     uploadImage(evt) {
       const files = evt.target.files;
       if (!files.length) return;
-      const file = files[0];
+      this.uploadfile = files[0];
 
-      const storageRef = firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + file.name)
-      storageRef.put(file).then(() => {
-        // アップロードした画像のURLを取得
-        firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + file.name).getDownloadURL()
-          .then((url) => {
-              // アップロードした画像のURLと画像名をDBに保存
-              this.$store.dispatch('ImageUrl', {url: url} )
-          }).catch((error) => {
-              console.log(error)
-          })
-      })
 
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.uploadfile);
       
       reader.onload = evt => {
         const fileBase64 =  evt.target.result;
@@ -96,7 +86,19 @@ export default {
       document.querySelector("#file").value = "";
     },
     sharePost() {
+      const storageRef = firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name)
+      storageRef.put(this.uploadfile).then(() => {
+        // アップロードした画像のURLを取得
+        firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name).getDownloadURL()
+          .then((url) => {
+              // アップロードした画像のURLと画像名をDBに保存
+              this.$store.dispatch('ImageUrl', {url: url} )
+          }).catch((error) => {
+              console.log(error)
+          })
+      })
       this.$store.dispatch('sharePostAction');
+      this.uploadfile = null;
       this.goToHome();
     },
     logout(){
