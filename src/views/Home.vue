@@ -41,10 +41,15 @@
 
 <script>
 import PhoneBody from "@/components/PhoneBody";
+import firebase from 'firebase'
 export default {
   name: 'Home',
   components: {
     "phone-body": PhoneBody
+  },
+  data(){
+    return {
+    }
   },
   computed: {
     step(){
@@ -65,10 +70,23 @@ export default {
       const files = evt.target.files;
       if (!files.length) return;
       const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+      const fileUrl = reader.readAsDataURL(files[0]);
+      console.log(fileUrl);
+      console.log(this.$store.stateuploadImage);
+      const storageRef = firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + fileUrl)
+      storageRef.put(files).then(() => {
+            // アップロードした画像のURLを取得
+            firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + fileUrl).getDownloadURL()
+              .then((url) => {
+                  // アップロードした画像のURLと画像名をDBに保存
+                  this.$store.dispatch('ImageUrl', {url: url} )
+              }).catch((error) => {
+                  console.log(error)
+              })
+        })  
       reader.onload = evt => {
-        this.$store.commit('setUploadImage', evt.target.result);
         this.$store.commit('setStep', 2);
+        console.log(evt);
       };
       // To enable reuploading of same files in Chrome
       document.querySelector("#file").value = "";
