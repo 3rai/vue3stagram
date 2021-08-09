@@ -10,12 +10,12 @@
       <phone-body
         v-model="caption"
       />
-      <div class="phone-footer">
-        <div class="home-cta" @click="goToHome">
+      <!-- <div class="phone-footer"> -->
+        <!-- <div class="home-cta" @click="goToHome">
           <i class="fas fa-home fa-lg"></i>
-        </div>
-        <button class="logout-button" @click="logout">ログアウト</button>
-        <div class="upload-cta">
+        </div> -->
+        <!-- <button class="logout-button" @click="logout">ログアウト</button> -->
+        <!-- <div class="upload-cta">
           <input
             type="file"
             name="file"
@@ -27,8 +27,8 @@
           <label for="file">
             <i class="far fa-plus-square fa-lg"></i>
           </label>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
   </div>
 
@@ -127,14 +127,15 @@ export default {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  background: #fafafa;
+  background: #ebd160;
   border-bottom: 1px solid #eeeeee;
   z-index: 99;
 }
 .phone-header img {
-  max-width: 120px;
+  max-width: 250px;
   display: block;
   margin: 0 auto;
+  margin-bottom: 2%;
   padding-top: 1px;
 }
 .phone-header .cancel-cta,
@@ -225,7 +226,7 @@ export default {
 .phone-footer label {
   cursor: pointer;
   z-index: 99;
-}
+ }  
 
 .fade-leave-active {
   transition: opacity 0.5s;
@@ -234,6 +235,8 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
+
 
 @media (max-width: 520px) {
   .app-phone, .app-phone-scroll-cover {
