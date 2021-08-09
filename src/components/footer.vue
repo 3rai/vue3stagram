@@ -7,7 +7,7 @@
         </li>
         <li>
             <i class="fas fa-plus-square fa-lg"></i
-            ><a href="http://localhost:8080/register">投稿</a>
+            ><a href="upload-cta">投稿</a>
         </li>
         <li>
             <i class="fas fa-user fa-lg"></i
@@ -19,6 +19,20 @@
         </li>
         </ul>
     </div>
+
+		<!-- <div class="upload-cta">
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="inputfile"
+            @change="uploadImage"
+            :disabled="step !== 1"
+          >
+          <label for="file">
+            <i class="far fa-plus-square fa-lg"></i>
+          </label>
+        </div> -->
 
 </template>
 
