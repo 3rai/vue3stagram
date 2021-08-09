@@ -4,8 +4,8 @@
       <div class="reg-header">
         <img src="@/assets/okashilogo.png">
         <!--stepが切り替わることでBodyの内容も切り替わる-->
-        <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome">Cancel</a>
-        <a class="next-cta" v-if="step === 2 || step === 3" @click="goToHome">Done</a>
+        <a class="cancel-cta" v-if="step === 2 || step === 3 || step === 4" @click="goToHome">Cancel</a>
+        <a class="next-cta" v-if="step === 2 || step === 3 || step === 4" @click="goToHome">Done</a>
       </div>
       <!--Body部分RegisterBodyで内容記述-->
       <reg-body
