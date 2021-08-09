@@ -10,18 +10,12 @@
       <phone-body
         v-model="caption"
       />
-      <div class="phone-footer">
-        <div class="home-cta" @click="goToHome">
+      <!-- <div class="phone-footer"> -->
+        <!-- <div class="home-cta" @click="goToHome">
           <i class="fas fa-home fa-lg"></i>
-        </div>
-        <button class="logout-button" @click="logout">ログアウト</button>
-        <div class="reg-cta">
-          <!--設定アイコン-->
-          <label for="reg" @click="this.$router.push('/register')">
-            <i class="fas fa-cog fa-lg"></i>
-          </label>
-        </div>
-        <div class="upload-cta">
+        </div> -->
+        <!-- <button class="logout-button" @click="logout">ログアウト</button> -->
+        <!-- <div class="upload-cta">
           <input
             type="file"
             name="file"
@@ -33,18 +27,29 @@
           <label for="file">
             <i class="far fa-plus-square fa-lg"></i>
           </label>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
   </div>
+
+  <Footer />
+
 </template>
 
 <script>
 import PhoneBody from "@/components/PhoneBody";
+import firebase from 'firebase'
+import Footer from "@/components/Footer.vue"
 export default {
   name: 'Home',
   components: {
-    "phone-body": PhoneBody
+    "phone-body": PhoneBody,
+    Footer
+  },
+  data(){
+    return {
+      uploadfile: null,
+    }
   },
   computed: {
     step(){
@@ -64,17 +69,35 @@ export default {
     uploadImage(evt) {
       const files = evt.target.files;
       if (!files.length) return;
+      this.uploadfile = files[0];
+
+
       const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(this.uploadfile);
+      
       reader.onload = evt => {
-        this.$store.commit('setUploadImage', evt.target.result);
+        const fileBase64 =  evt.target.result;
+        this.$store.commit('setUploadImage', fileBase64);
         this.$store.commit('setStep', 2);
+        console.log(evt);
       };
       // To enable reuploading of same files in Chrome
       document.querySelector("#file").value = "";
     },
     sharePost() {
+      const storageRef = firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name)
+      storageRef.put(this.uploadfile).then(() => {
+        // アップロードした画像のURLを取得
+        firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name).getDownloadURL()
+          .then((url) => {
+              // アップロードした画像のURLと画像名をDBに保存
+              this.$store.dispatch('ImageUrl', {url: url} )
+          }).catch((error) => {
+              console.log(error)
+          })
+      })
       this.$store.dispatch('sharePostAction');
+      this.uploadfile = null;
       this.goToHome();
     },
     logout(){
@@ -83,32 +106,37 @@ export default {
     }
   }
 }
+//miyazaki
 </script>
 
 <style>
+.home{
+  width: 100%;
+}
+
 .app-phone {
   background-color: white;
-  height: 620px;
-  width: 375px;
+  /* height: 620px; */
+  width: 100%;
   overflow: hidden;
 }
 
 .phone-header {
   height: auto;
-  width: 375px;
+  width: 100%;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  background: #fafafa;
+  background: #ebd160;
   border-bottom: 1px solid #eeeeee;
   z-index: 99;
 }
 .phone-header img {
-  max-width: 150px;
+  max-width: 250px;
   display: block;
   margin: 0 auto;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  margin-bottom: 2%;
+  padding-top: 1px;
 }
 .phone-header .cancel-cta,
 .phone-header .next-cta {
@@ -124,9 +152,7 @@ export default {
 .phone-header .next-cta {
   right: 10px;
 }
-.phone-body{
-  height: 514.6px;
-}
+
 .feed {
   height: 100%;
   overflow-y: scroll;
@@ -140,6 +166,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .caption-container textarea {
   border: 0;
   font-size: 1rem;
@@ -182,13 +209,6 @@ export default {
   cursor: pointer;
   z-index: 10;
 }
-.phone-footer .reg-cta {
-  position: absolute;
-  right: 50px;
-  top: 6px;
-  cursor: pointer;
-}
-
 .phone-footer .upload-cta {
   position: absolute;
   right: 10px;
@@ -206,7 +226,7 @@ export default {
 .phone-footer label {
   cursor: pointer;
   z-index: 99;
-}
+ }  
 
 .fade-leave-active {
   transition: opacity 0.5s;
@@ -215,6 +235,8 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
+
 
 @media (max-width: 520px) {
   .app-phone, .app-phone-scroll-cover {

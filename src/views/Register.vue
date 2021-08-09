@@ -148,12 +148,18 @@
     <div class="reg-footer">
     </div>
   </div>
+
+  <Footer />
+
 </template>
 
 <script>
+//import RegisterBody from "@/components/RegisterBody";
+import Footer from "@/components/Footer.vue";
 export default{
   name: 'Register',
   components: {
+    Footer
 
   },
   data(){
