@@ -88,11 +88,7 @@ export default {
       
       reader.onload = evt => {
         const fileBase64 =  evt.target.result;
-        console.log("↓fileBase64");
-        console.log(fileBase64);
-
-        
-
+        this.$store.commit('setUploadImage', fileBase64);
         this.$store.commit('setStep', 2);
         console.log(evt);
       };
