@@ -39,7 +39,7 @@
 <script>
 import PhoneBody from "@/components/PhoneBody";
 import firebase from 'firebase'
-import Footer from "@/components/Footer.vue"
+import Footer from "@/components/Footer"
 export default {
   name: 'Home',
   components: {

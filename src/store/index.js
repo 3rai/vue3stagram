@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 // mock data
-import mock_posts from "@/data/posts";
+//import mock_posts from "@/data/posts";
 import mock_filters from "@/data/filters";
 import db from 'firebase' ;
 
@@ -13,7 +13,7 @@ export default createStore({
       isLoggedIn: false,
     },
     step: 1,  // 画面状態
-    posts: null, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
+    //posts: null, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
     filters: mock_filters, // 投稿前のフィルター情報
     /* 投稿情報 */
     uploadImage: "",
@@ -86,9 +86,16 @@ export default createStore({
       // ここも色々やってから
       context.commit('setIsLoggedIn', false);
     },
-    initPostData(context){
+    async initPostData(context){
       //データベースを使う場合など，ここでデータ取得などを行うと良いかも
-      context.commit('setPosts', mock_posts);
+      const postRef = db.firestore().collection('posts');
+      const posts = await postRef.get();
+      const post = [];
+      posts.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+        post.push(doc.data())
+      })
+      context.commit('setPosts', post);
     },
     resetStepAction(context){
       context.commit('setStep', 1);
