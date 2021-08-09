@@ -16,7 +16,7 @@
           :disabled="step !== 1"
         >
         <label for="file">
-          <button><img src="@/assets/reg_profileimage.png" alt="register_profile" width="250" height="50"/></button>
+          <img src="@/assets/reg_profileimage.png" alt="register_profile" width="250" height="50"/>
         </label>
       </div>
       <div class="reg-parameter">
@@ -250,6 +250,10 @@ h1{
   background-size: cover;
   background-position: center center;
   height: 330px;
+}
+
+div[class$="reg-"]:hover{
+
 }
 .reg-nickname button{
   width: 100%;
