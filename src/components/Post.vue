@@ -45,6 +45,8 @@ export default {
 
 <style>
 .vuestagram-post {
+  width: 500px;
+  height: 500px;
   padding-top: 50px;
 }
 
