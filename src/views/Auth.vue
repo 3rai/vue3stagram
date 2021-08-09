@@ -19,6 +19,7 @@ export default{
   name: 'Signup',
   data () {
     return {
+
     }
   },
   methods: {
@@ -36,7 +37,7 @@ export default{
 
           console.log(userData)
           db.firestore().collection('users').doc(result.user.uid).set(userData)
-          this.$store.commit('setUserInfo', userData.userName);
+          this.$store.commit('setUserInfo', {userName: userData.userName, userId: userData.id});
           this.$router.push('/')
         })
         .catch(error => alert(error.message))
