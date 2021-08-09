@@ -1,14 +1,14 @@
 <template>
   <div id="mypage">
     <div class="profile">
-      <h1>Profile</h1>
+      <h1>マイページ</h1>
       <div class="user-info">
         <div class="photo1">
           <img src="@/assets/S__852356.jpg">
         </div>
-        <h2>name</h2>
+        <h2>なまえ</h2>
         <p1>根本</p1>
-        <h2>comment</h2>
+        <h2>ひとこと</h2>
         <p2>
           はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
         </p2>
@@ -22,14 +22,14 @@
     </div>
 
     <ul id="nav">
-      <li><a href="http://localhost:8080/">HOME</a></li>
-      <li><a href="http://localhost:8080/MyPage">MYPAGE</a></li>
-      <li><a href="#">MENU3</a></li>
+      <li><i class="fas fa-home fa-lg"></i><a href="http://localhost:8080/">ホーム</a></li>
+      <li><i class="fas fa-user fa-lg"></i><a href="http://localhost:8080/MyPage">マイページ</a></li>
+      <li><i class="fas fa-cog fa-lg"></i><a href="http://localhost:8080/register">編集</a></li>
     </ul>
 
-    <div class="home-cta" >
+    <!-- <div class="home-cta" >
           <i class="fas fa-home fa-lg"></i>
-    </div>
+    </div> -->
 
   </div>
 
