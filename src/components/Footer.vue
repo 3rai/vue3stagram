@@ -2,20 +2,24 @@
     <div class="footer">
         <ul id="nav">
         <li>
-            <i class="fas fa-home fa-lg"></i
-            ><a href="http://localhost:8080/">ホーム</a>
+            <i class="fas fa-home fa-lg"></i>
+            <!-- <a href="http://localhost:8080/">ホーム</a> -->
+            <router-link to="/">ホーム</router-link>
         </li>
         <li>
-            <i class="fas fa-plus-square fa-lg"></i
-            ><a href="http://localhost:8080/Contribution">投稿</a>
+            <i class="fas fa-plus-square fa-lg"></i>
+            <!-- <a href="http://localhost:8080/Contribution">投稿</a> -->
+            <router-link to="/Contribution">投稿</router-link>
         </li>
         <li>
-            <i class="fas fa-user fa-lg"></i
-            ><a href="http://localhost:8080/MyPage">マイページ</a>
+            <i class="fas fa-user fa-lg"></i>
+            <!-- <a href="http://localhost:8080/MyPage">マイページ</a> -->
+            <router-link to="/MyPage">マイページ</router-link>
         </li>
         <li>
-            <i class="fas fa-cog fa-lg"></i
-            ><a href="http://localhost:8080/register">編集</a>
+            <i class="fas fa-cog fa-lg"></i>
+            <!-- <a href="http://localhost:8080/register">設定</a> -->
+            <router-link to="/register">設定</router-link>
         </li>
         </ul>
     </div>

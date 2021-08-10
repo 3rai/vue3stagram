@@ -141,6 +141,7 @@
           </div>
         </div> 
         <button @click="goToHome">戻る</button>
+        <button @click="check2">登録</button>
       </div>
     </div>
   </div>
@@ -216,6 +217,10 @@ export default{
         this.nickname,
         this.profileimage
       )
+    },
+    check2(){
+      this.$store.commit('setStep', 1);
+      this.$router.push('/')
     }
   }
 }

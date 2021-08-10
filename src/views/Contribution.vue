@@ -15,7 +15,7 @@
               type="file"
               name="file"
               id="file"
-              @change="uploadProfileImage"
+              @change="UploadImage"
               :disabled="step !== 1"
             >ファイルを選択
           </label>
@@ -32,7 +32,7 @@
           <input class="comment" type="text" v-model="comment"/>
         </div>
         <div class="share">
-          <button @click="check">次へ</button>
+          <button @click="sharePost">投稿</button>
         </div>
       </div>
     </div>
@@ -41,7 +41,9 @@
 </template>
 
 <script>
+//import firebase from 'firebase'
 import Footer from "@/components/Footer.vue";
+import db from 'firebase' ;
 export default{
   name: 'Contribution',
   components: {
@@ -50,8 +52,9 @@ export default{
   },
   data(){
     return{
-      nickname: "",
       uploadImage: null,
+      place: "",
+      comment: "",
     }
   },
   computed: {
@@ -79,13 +82,16 @@ export default{
     },
 
     //ファイルマネージャー開いて画像を選択してもらう？ここでは使わない
-    uploadProfileImage(evt){
+    UploadImage(evt){
       const files = evt.target.files;
       if(!files.length) return;
+      this.uploadfile = files[0];
       const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(this.uploadfile);
       reader.onload = evt => {
         this.uploadImage = evt.target.result;
+       // this.$store.commit('setStep', 2);
+        console.log(evt);
         //this.$store.commit('setUploadImage', evt.target.result);
         //this.$store.commit('setStep', 2);
       };
@@ -93,8 +99,17 @@ export default{
     },
     //投稿シェア
     sharePost() {
-      this.$store.dispatch('sharePostAction');
-      this.goToHome();
+      const postData = {
+        username: this.$store.state.user.userName,
+        userId: this.$store.state.user.id,
+        userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
+        postImage: this.uploadImage,
+        likes: 0,
+        caption: this.comment,
+        //filter: this.state.selectedFilter
+      };
+      db.firestore().collection('posts').doc().set(postData);
+      this.$router.push('/');
     },
     //ログアウトは使わない
     logout(){
@@ -102,11 +117,11 @@ export default{
       this.$store.push('/auth');
     },
     check(){
-      this.$store.dispatch('sharePostAction');
-      this.$store.push('/');
+      this.$store.push('/')
       console.log(
-        this.nickname,
-        this.profileimage
+        this.uploadImage,
+        this.place,
+        this.comment
       )
     }
   }
@@ -164,10 +179,12 @@ export default{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 330px;
-
+  height: 200px;
 }
-
+.selected-image img{
+  width: 400px;
+  height: auto;
+}
 .fade-leave-active {
   transition: opacity 0.5s;
 }

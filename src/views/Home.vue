@@ -35,7 +35,6 @@
 
 <script>
 import PhoneBody from "@/components/PhoneBody";
-import firebase from 'firebase'
 import Footer from "@/components/Footer"
 export default {
   name: 'Home',
@@ -63,44 +62,7 @@ export default {
     goToHome() {
       this.$store.dispatch('resetStepAction');
     },
-    uploadImage(evt) {
-      const files = evt.target.files;
-      if (!files.length) return;
-      this.uploadfile = files[0];
-
-
-      const reader = new FileReader();
-      reader.readAsDataURL(this.uploadfile);
-      
-      reader.onload = evt => {
-        const fileBase64 =  evt.target.result;
-        this.$store.commit('setUploadImage', fileBase64);
-        this.$store.commit('setStep', 2);
-        console.log(evt);
-      };
-      // To enable reuploading of same files in Chrome
-      document.querySelector("#file").value = "";
-    },
-    sharePost() {
-      const storageRef = firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name)
-      storageRef.put(this.uploadfile).then(() => {
-        // アップロードした画像のURLを取得
-        firebase.storage().ref('users/' + this.$store.state.user.id + '/images/' + this.uploadfile.name).getDownloadURL()
-          .then((url) => {
-              // アップロードした画像のURLと画像名をDBに保存
-              this.$store.dispatch('ImageUrl', {url: url} )
-          }).catch((error) => {
-              console.log(error)
-          })
-      })
-      this.$store.dispatch('sharePostAction');
-      this.uploadfile = null;
-      this.goToHome();
-    },
-    logout(){
-      this.$store.dispatch('logout');
-      this.$router.push('/auth');
-    }
+    
   }
 }
 //miyazaki

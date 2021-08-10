@@ -17,7 +17,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    // meta: { requiresAuth: true }
+    meta: { requiresAuth: true }
   },
   {
     path: '/auth',
@@ -28,19 +28,19 @@ const routes = [
     path: '/mypage',
     name: 'MyPage',
     component: MyPage,
-    //meta: { requiresAuth: true }
+    meta: { requiresAuth: true }
   },
   {
     path: '/register',
     name: 'Register',
     component: Register,
-    // meta: { requiresAuth: true }
+    meta: { requiresAuth: true }
   },
   {
     path: '/contribution',
     name: 'Contribution',
     component: Contribution,
-    // meta: { requiresAuth: true }
+    meta: { requiresAuth: true }
   }
 ]
 
