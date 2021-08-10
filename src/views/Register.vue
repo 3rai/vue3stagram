@@ -1,6 +1,6 @@
 <template>
   <div class = "register">
-    <div class="reg-header">
+    <div class="phone-header">
       <img src="@/assets/okashilogo.png">
     </div>
     <!--Body部分RegisterBodyで内容記述-->
@@ -24,14 +24,12 @@
               :disabled="step !== 1"
             >ファイルを選択
           </label>
-          <div
-          class="selected-image"
-          :class="selectedFilter"
-          :style="{ backgroundImage: 'url(' + image + ')' }"
-          ></div>
+        </div>
+        <div v-if="profileimage!=null" class="selected-image">
+          <img :src="profileimage"/>
         </div>
         <div class="next">
-          <button @click="check; this.$store.commit('setStep', 2)">次へ</button>
+          <button @click="check">次へ</button>
         </div>
       </div>
       <div v-if="step === 2" class="feed" v-dragscroll.y>
@@ -141,7 +139,8 @@
               </select>
             </p> 
           </div>
-        </div>         
+        </div> 
+        <button @click="goToHome">戻る</button>
       </div>
     </div>
   </div>
@@ -157,7 +156,6 @@ export default{
   name: 'Register',
   components: {
     Footer
-
   },
   data(){
     return{
@@ -174,9 +172,9 @@ export default{
     caption(){
       return this.$store.getters.getInputCaption;
     },
-    image(){
+    /* image(){
       return this.$store.getters.getUploadImage;
-    },
+    }, */
   },
   //
   created(){
@@ -196,11 +194,12 @@ export default{
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
-        this.$store.commit('setUploadImage', evt.target.result);
+        this.profileimage = evt.target.result;
         //this.$store.commit('setStep', 2);
       };
       document.querySelector("#file").value = "";
     },
+
     //Homeに移動は使わない
     register_fin(){
       //this.$store.dispatch('sharePostAction');
@@ -212,6 +211,7 @@ export default{
       this.$store.push('/auth');
     },
     check(){
+      this.$store.commit('setStep', 2);
       console.log(
         this.nickname,
         this.profileimage
@@ -221,7 +221,7 @@ export default{
 }
 </script>
 
-<style>
+<style scoped>
 .register{
   width: 100%;
   display: flex;
@@ -229,21 +229,18 @@ export default{
   justify-content: center;
 }
 
-.reg-header {
-  height: 100px;
+.phone-header {
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  background: #fafafa;
+  height: 100px;
+  background: #ebd160;
   border-bottom: 1px solid #eeeeee;
-  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
-.reg-header img {
-  max-width: 150px;
+.phone-header img {
+  max-width: 250px;
 }
 
 .feed {
@@ -274,12 +271,23 @@ export default{
   padding: 5px;
 }
 .selected-image {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  height: 330px;
-
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
 }
+.selected-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .reg-footer {
   height: 35px;
   width: 375px;

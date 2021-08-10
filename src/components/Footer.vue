@@ -7,7 +7,7 @@
         </li>
         <li>
             <i class="fas fa-plus-square fa-lg"></i
-            ><a href="upload-cta">投稿</a>
+            ><a href="http://localhost:8080/Contribution">投稿</a>
         </li>
         <li>
             <i class="fas fa-user fa-lg"></i

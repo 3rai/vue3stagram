@@ -3,6 +3,8 @@ import Home from '@/views/Home.vue'
 import Auth from '@/views/Auth.vue'
 import MyPage from '@/views/MyPage.vue'
 import Register from '@/views/Register.vue'
+import Contribution from '@/views/Contribution.vue'
+
 // import 'bootstrap/dist/css/bootstrap.css' // add
 // import 'bootstrap-vue/dist/bootstrap-vue.css' // add
 
@@ -32,6 +34,12 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
+    // meta: { requiresAuth: true }
+  },
+  {
+    path: '/contribution',
+    name: 'Contribution',
+    component: Contribution,
     // meta: { requiresAuth: true }
   }
 ]
