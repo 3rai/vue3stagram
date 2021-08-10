@@ -29,7 +29,7 @@
           <img :src="profileimage"/>
         </div>
         <div class="next">
-          <button @click="check; this.$store.commit('setStep', 2)">次へ</button>
+          <button @click="check">次へ</button>
         </div>
       </div>
       <div v-if="step === 2" class="feed" v-dragscroll.y>
@@ -211,6 +211,7 @@ export default{
       this.$store.push('/auth');
     },
     check(){
+      this.$store.commit('setStep', 2);
       console.log(
         this.nickname,
         this.profileimage
