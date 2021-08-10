@@ -32,7 +32,7 @@
           <input class="comment" type="text" v-model="comment"/>
         </div>
         <div class="share">
-          <button @click="sharePost">完了</button>
+          <button @click="sharePost">投稿</button>
         </div>
       </div>
     </div>

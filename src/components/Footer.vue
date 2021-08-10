@@ -18,8 +18,8 @@
         </li>
         <li>
             <i class="fas fa-cog fa-lg"></i>
-            <!-- <a href="http://localhost:8080/register">編集</a> -->
-            <router-link to="/register">編集</router-link>
+            <!-- <a href="http://localhost:8080/register">設定</a> -->
+            <router-link to="/register">設定</router-link>
         </li>
         </ul>
     </div>
