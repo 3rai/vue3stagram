@@ -1,7 +1,7 @@
 <template>
   <div class="contribution">
-    <div class="contribution-header">
-      <img src="@/assets/okashilogo.png"/>
+    <div class="phone-header">
+      <img src="@/assets/okashilogo.png">
     </div>
     <div class="contribution-body">
       <div v-if="step === 1" class="feed" v-dragscroll.y>
@@ -19,11 +19,9 @@
               :disabled="step !== 1"
             >ファイルを選択
           </label>
-          <div
-          class="selected-image"
-          :class="selectedFilter"
-          :style="{ backgroundImage: 'url(' + image + ')' }"
-          ></div>
+        </div>
+        <div v-if="uploadImage!=null" class="slected-image">
+          <img :src="uploadImage"/>
         </div>
         <div class="item nickname">
           <p>販売場所</p>
@@ -45,7 +43,7 @@
 <script>
 import Footer from "@/components/Footer.vue";
 export default{
-  name: 'Register',
+  name: 'Contribution',
   components: {
     Footer
 
@@ -53,7 +51,7 @@ export default{
   data(){
     return{
       nickname: "",
-      profileimage: null,
+      uploadImage: null,
     }
   },
   computed: {
@@ -87,7 +85,8 @@ export default{
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
-        this.$store.commit('setUploadImage', evt.target.result);
+        this.uploadImage = evt.target.result;
+        //this.$store.commit('setUploadImage', evt.target.result);
         //this.$store.commit('setStep', 2);
       };
       document.querySelector("#file").value = "";
@@ -124,28 +123,28 @@ export default{
   flex-direction: column;
   justify-content: center;
 }
-
-.contribution-header {
-  height: auto;
+.phone-header {
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+  height: 100px;
   background: #ebd160;
   border-bottom: 1px solid #eeeeee;
-  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
-.contribution-header img {
+.phone-header img {
   max-width: 250px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 2%;
-  padding-top: 1px;
 }
 
+.feed {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .description{
   padding: 30px;
 }
@@ -170,34 +169,6 @@ export default{
   background-position: center center;
   height: 330px;
 
-}
-.reg-footer {
-  height: 35px;
-  width: 375px;
-  position: sticky;
-  position: -webkit-sticky;
-  bottom: 0;
-  background: #fafafa;
-  border-top: 1px solid #eeeeee;
-  z-index: 99;
-}
-.reg-footer .reg-cta {
-  position: absolute;
-  right: 10px;
-  top: 6px;
-}
-.reg-footer .reg-cta p {
-  font-size: 0.63rem;
-  position: absolute;
-  left: -25px;
-  top: 5px;
-}
-.reg-footer input[name=file] {
-  visibility: hidden;
-}
-.reg-footer label {
-  cursor: pointer;
-  z-index: 99;
 }
 
 .fade-leave-active {

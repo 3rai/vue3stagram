@@ -26,7 +26,7 @@
           </label>
         </div>
         <div v-if="profileimage!=null" class="selected-image">
-          <img :src="profileimage" />
+          <img :src="profileimage"/>
         </div>
         <div class="next">
           <button @click="check; this.$store.commit('setStep', 2)">次へ</button>
