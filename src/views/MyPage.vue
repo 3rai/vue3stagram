@@ -1,37 +1,35 @@
 <template>
-  <div id="mypage">
+  <div class="mypage">
     <div class="phone-header">
       <img src="@/assets/okashilogo.png">
     </div>
-    <div class="profile">
-      <div class="user-info">
-        <div class="photo1">
-          <img src="@/assets/S__884742.jpg" />
+    <div class="mypage-body">
+      <div class="profile">
+        <h1>マイページ</h1>
+        <div class="user-info">
+          <div class="photo1">
+            <img src="@/assets/S__884742.jpg" />
+          </div>
+          <h2>なまえ</h2>
+          <p1>根本</p1>
+          <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
+          <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p>
+          <h2>ひとこと</h2>
+          <p2>
+            はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+          </p2>
         </div>
-        <h2>なまえ</h2>
-        <p1>根本</p1>
-        <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
-        <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p>
-        <h2>ひとこと</h2>
-        <p2>
-          はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-        </p2>
+      </div>
+      <div id="main">
+        <div
+          class="pictures"
+          v-for="(test, index) in testarray"
+          :key="index"
+        >
+          <img v-bind:src="test.picture" />
+        </div>
       </div>
     </div>
-
-    <div id="main">
-      <div
-        class="pictures"
-        v-for="(test, index) in testarray"
-        :key="index"
-      >
-        <img v-bind:src="test.picture" />
-      </div>
-    </div>
-
-    <!-- <div class="home-cta" >
-          <i class="fas fa-home fa-lg"></i>
-    </div> -->
 
     <Footer />
 
@@ -89,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-#mypage {
+.mypage {
   position: relative;
   width: 100%;
   display: flex;
@@ -124,6 +122,7 @@ export default {
   font-family: "メイリオ", Meiryo, "ヒラギノ角ゴシック", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
 } */
+
 
 .user-info {
   width: 100%;

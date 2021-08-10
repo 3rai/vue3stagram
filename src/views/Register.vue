@@ -139,7 +139,8 @@
               </select>
             </p> 
           </div>
-        </div>         
+        </div> 
+        <button @click="this.$store.commit('setStep', 1)">戻る</button>
       </div>
     </div>
   </div>
