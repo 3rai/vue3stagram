@@ -13,7 +13,7 @@ export default createStore({
       isLoggedIn: false,
     },
     step: 1,  // 画面状態
-    //posts: null, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
+    posts: null, // 投稿データ(ここではjsonを読み込んでいるが，DB連係できると良い)
     filters: mock_filters, // 投稿前のフィルター情報
     /* 投稿情報 */
     uploadImage: "",
