@@ -40,7 +40,7 @@ const routes = [
     path: '/contribution',
     name: 'Contribution',
     component: Contribution,
-    // meta: { requiresAuth: true }
+    meta: { requiresAuth: true }
   }
 ]
 

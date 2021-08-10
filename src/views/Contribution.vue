@@ -108,8 +108,8 @@ export default{
         caption: this.comment,
         //filter: this.state.selectedFilter
       };
-      db.firestore().collection('posts').doc().set(postData).then(
-          this.$store.push('/'));
+      db.firestore().collection('posts').doc().set(postData);
+      this.$router.push('/');
     },
     //ログアウトは使わない
     logout(){
