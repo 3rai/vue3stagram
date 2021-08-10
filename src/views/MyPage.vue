@@ -1,7 +1,7 @@
 <template>
   <div class="mypage">
-    <div class="mypage-header">
-      <img src="@/assets/okashilogo.png"/>
+    <div class="phone-header">
+      <img src="@/assets/okashilogo.png">
     </div>
     <div class="mypage-body">
       <div class="profile">
@@ -20,7 +20,6 @@
           </p2>
         </div>
       </div>
-
       <div id="main">
         <div
           class="pictures"
@@ -32,7 +31,7 @@
       </div>
     </div>
 
-  <Footer />
+    <Footer />
 
   </div>
 </template>
@@ -87,34 +86,33 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .mypage {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.mypage-header {
-  height: auto;
+
+.phone-header {
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+  height: 100px;
   background: #ebd160;
   border-bottom: 1px solid #eeeeee;
-  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
-.mypage-header img {
+.phone-header img {
   max-width: 250px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 2%;
-  padding-top: 1px;
 }
-h1 {
+
+.profile{
+  position: relative;
+}
+/* h1 {
   color: rgb(82, 74, 7);
   background: #f0d069;
   text-align: center;
@@ -123,7 +121,7 @@ h1 {
   margin-bottom: 10px;
   font-family: "メイリオ", Meiryo, "ヒラギノ角ゴシック", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
-}
+} */
 
 
 .user-info {
@@ -153,7 +151,7 @@ h2 {
   border-radius: 50%;
 }
 
-img {
+.photo1 img, main img {
   position: absolute;
   top: 0;
   left: 0;
