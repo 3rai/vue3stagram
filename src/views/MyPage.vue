@@ -12,8 +12,8 @@
           </div>
           <h2>なまえ</h2>
           <p1>根本</p1>
-          <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
-          <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p>
+          <!-- <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
+          <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p> -->
           <h2>ひとこと</h2>
           <p2>
             はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
@@ -150,7 +150,19 @@ h2 {
   border-radius: 50%;
 }
 
-.photo1 img, main img {
+.photo1 img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#main img{
   position: absolute;
   top: 0;
   left: 0;
@@ -175,7 +187,7 @@ p2 {
 }
 
 #main {
-  width: 90%;
+  width: 100%;
   display: flex;
   gap: 0 3.5%;
   flex-wrap: wrap;
