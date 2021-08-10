@@ -32,7 +32,7 @@
           <input class="comment" type="text" v-model="comment"/>
         </div>
         <div class="share">
-          <button @click="check; sharePost">次へ</button>
+          <button @click="check">次へ</button>
         </div>
       </div>
     </div>
@@ -107,6 +107,8 @@ export default{
       this.$store.push('/auth');
     },
     check(){
+      this.$store.dispatch('sharePostAction');
+      this.$store.push('/');
       console.log(
         this.nickname,
         this.profileimage
