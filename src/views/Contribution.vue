@@ -179,11 +179,14 @@ export default{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 200px;
+  height: 100px;
 }
 .selected-image img{
-  width: 400px;
+  width: 100px;
   height: auto;
+}
+.share button{
+  margin-bottom: 50px;
 }
 .fade-leave-active {
   transition: opacity 0.5s;
