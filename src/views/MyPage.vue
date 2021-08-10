@@ -5,7 +5,7 @@
     </div>
     <div class="mypage-body">
       <div class="profile">
-        <h1>マイページ</h1>
+        <!--<h1>マイページ</h1>-->
         <div class="user-info">
           <div class="photo1">
             <img src="@/assets/S__884742.jpg" />
@@ -108,7 +108,6 @@ export default {
 .phone-header img {
   max-width: 250px;
 }
-
 .profile{
   position: relative;
 }

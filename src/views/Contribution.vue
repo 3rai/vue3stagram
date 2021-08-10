@@ -96,11 +96,6 @@ export default{
       this.$store.dispatch('sharePostAction');
       this.goToHome();
     },
-    //Homeに移動は使わない
-    register_fin(){
-      //this.$store.dispatch('sharePostAction');
-      this.$router.push('/')
-    },
     //ログアウトは使わない
     logout(){
       this.$store.dispatch('logout');
