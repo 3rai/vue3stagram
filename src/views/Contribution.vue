@@ -186,7 +186,7 @@ export default{
   height: auto;
 }
 .share button{
-  margin-bottom: 50px;
+  margin-bottom: 500px;
 }
 .fade-leave-active {
   transition: opacity 0.5s;
