@@ -24,11 +24,9 @@
               :disabled="step !== 1"
             >ファイルを選択
           </label>
-          <div
-          class="selected-image"
-          :class="selectedFilter"
-          :style="{ backgroundImage: 'url(' + image + ')' }"
-          ></div>
+        </div>
+        <div v-if="profileimage!=null" class="selected-image">
+          <img :src="profileimage" />
         </div>
         <div class="next">
           <button @click="check; this.$store.commit('setStep', 2)">次へ</button>
@@ -157,7 +155,6 @@ export default{
   name: 'Register',
   components: {
     Footer
-
   },
   data(){
     return{
@@ -174,9 +171,9 @@ export default{
     caption(){
       return this.$store.getters.getInputCaption;
     },
-    image(){
+    /* image(){
       return this.$store.getters.getUploadImage;
-    },
+    }, */
   },
   //
   created(){
@@ -196,11 +193,12 @@ export default{
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
-        this.$store.commit('setUploadImage', evt.target.result);
+        this.profileimage = evt.target.result;
         //this.$store.commit('setStep', 2);
       };
       document.querySelector("#file").value = "";
     },
+
     //Homeに移動は使わない
     register_fin(){
       //this.$store.dispatch('sharePostAction');
@@ -271,12 +269,23 @@ export default{
   padding: 5px;
 }
 .selected-image {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  height: 330px;
-
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
 }
+.selected-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .reg-footer {
   height: 35px;
   width: 375px;
