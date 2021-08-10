@@ -11,12 +11,12 @@
             <img src="@/assets/S__884742.jpg" />
           </div>
           <h2>なまえ</h2>
-          <p1>根本</p1>
+          <p1>みやざき</p1>
           <!-- <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
           <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p> -->
           <h2>ひとこと</h2>
           <p2>
-            はじめまして。こんにちは。こんばんわ。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+            お菓子好きです。特にきのこの山が好きですが、他のお菓子も大好きです。
           </p2>
         </div>
       </div>
@@ -73,12 +73,12 @@ export default {
         nine: {
           picture: require("@/assets/S__892934.jpg"),
         },
-        ten: {
-          picture: require("@/assets/S__835622.jpg"),
-        },
-        eleven: {
-          picture: require("@/assets/S__835622.jpg"),
-        },
+        // ten: {
+        //   picture: require("@/assets/S__835622.jpg"),
+        // },
+        // eleven: {
+        //   picture: require("@/assets/S__835622.jpg"),
+        // },
       },
     };
   },
