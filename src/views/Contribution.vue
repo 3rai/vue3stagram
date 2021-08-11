@@ -20,7 +20,7 @@
             >ファイルを選択
           </label>
         </div>
-        <div v-if="uploadImage!=null" class="slected-image">
+        <div v-if="uploadImage!=null" class="selected-image">
           <img :src="uploadImage"/>
         </div>
         <div class="item nickname">
@@ -176,14 +176,25 @@ export default{
   padding: 5px;
 }
 .selected-image {
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
-  height: 200px;
+  background-position: center center; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 400px;
+  max-width: 70%;
+  max-height: 500px;
+  padding: 30px;
 }
 .selected-image img{
-  width: 400px;
-  height: auto;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+.share button{
+  /* margin-bottom: 500px; */
 }
 .fade-leave-active {
   transition: opacity 0.5s;
