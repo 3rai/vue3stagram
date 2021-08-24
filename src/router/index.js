@@ -4,6 +4,7 @@ import Auth from '@/views/Auth.vue'
 import MyPage from '@/views/MyPage.vue'
 import Register from '@/views/Register.vue'
 import Contribution from '@/views/Contribution.vue'
+import Search from '@/views/Search.vue'
 
 // import 'bootstrap/dist/css/bootstrap.css' // add
 // import 'bootstrap-vue/dist/bootstrap-vue.css' // add
@@ -41,6 +42,12 @@ const routes = [
     name: 'Contribution',
     component: Contribution,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+    // meta: { requiresAuth: true }
   }
 ]
 

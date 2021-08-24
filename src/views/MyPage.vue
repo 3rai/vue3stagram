@@ -14,6 +14,8 @@
 
           <p1>もりもと</p1>
 
+          <button class="button">フォローする</button>
+
           <!-- <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
           <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p> -->
           <h2>ひとこと</h2>
@@ -216,6 +218,10 @@ p2 {
   content: "";
   padding-top: 100%;
   display: block;
+}
+
+.button{
+  color: #849e26;
 }
 
 </style>
