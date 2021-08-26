@@ -2,13 +2,13 @@
   <div class="vuestagram-post">
     <div class="header level">
       <div class="level-left details">
-        <figure class="image is-32x32">
+        <figure class="image is-32x32">  <!--プロフィール画像-->
           <img :src="post.userImage">
         </figure>
-        <span @click="like" class="username">{{post.username}}</span>
+        <span @click="like" class="username">{{post.username}}</span>  <!--プロフィール画像(クリックでlikeアクション)-->
       </div>
     </div>
-    <div @dblclick="like">
+    <div @dblclick="like">  <!--投稿画像(ダブルクリックでlikeアクション)-->
       <div
         class="image-container"
         :class="post.filter"
@@ -21,6 +21,10 @@
         <i class="far fa-heart fa-lg" :class="{'fas': this.post.hasBeenLiked}" @click="like"></i>
       </div>
       <p class="likes">{{post.likes}} likes</p>
+      <p class="place">
+        <span>販売場所：</span>
+        {{post.place}}
+      </p>
       <p class="caption">
         <span>{{post.username}}</span>
         {{post.caption}}
@@ -102,6 +106,15 @@ export default {
   margin: 5px 0;
   margin-bottom: 5px !important;
   font-size: 0.85rem;
+  font-weight: bold;
+}
+.vuestagram-post .place {
+  margin: 5px 0;
+  margin-bottom: 5px !important;
+  font-size: 0.85rem;
+  /*font-weight: bold;*/
+}
+.vuestagram-post .place span {
   font-weight: bold;
 }
 .vuestagram-post .caption {
