@@ -81,7 +81,7 @@ export default{
       this.$store.dispatch('resetStepAction');
     },
 
-    //ファイルマネージャー開いて画像を選択してもらう？ここでは使わない
+    //ファイルマネージャー開いて画像を選択してもらう？
     UploadImage(evt){
       const files = evt.target.files;
       if(!files.length) return;
@@ -116,6 +116,7 @@ export default{
       this.$store.dispatch('logout');
       this.$store.push('/auth');
     },
+    //使わない
     check(){
       this.$store.push('/')
       console.log(
