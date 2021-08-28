@@ -231,7 +231,7 @@ export default{
         comment: this.comment
       }
       db.firestore().collection('users').doc(this.$store.state.user.id).set(userData, {merge: true})
-      this.$store.commit('setUserInfo', {userProfileImage: userData.profileImage, userNickname: userData.nickname, userComment: userData.comment});
+      //this.$store.commit('setUserInfo', {userProfileImage: userData.profileImage, userNickname: userData.nickname, userComment: userData.comment});
       this.$store.commit('setStep', 1);
       this.$router.push('/')
     }
