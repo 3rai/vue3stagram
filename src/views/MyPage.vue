@@ -8,23 +8,17 @@
         <!--<h1>マイページ</h1>-->
         <div class="user-info">
           <div class="photo1">
-            <img src="@/assets/S__884742.jpg" />
+            <img src="@/assets/S__852356.jpg" />
           </div>
-          <h2>なまえ</h2>
 
-          <p1>もりもと</p1>
-
+          <h2>こむぎこ</h2>
           <button class="button">フォローする</button>
-
-          <!-- <p class="-nal3 " >フォロー<span class="g47SY " >5万</span>人</p>
-          <p class="-nal3 " >フォロワー<span class="g47SY " >3万</span>人</p> -->
-          <h2>ひとこと</h2>
+          
           <p2>
-
             はじめまして。
             甘いお菓子が好きです。スナック菓子もよく買います。
-
           </p2>
+
         </div>
       </div>
       <div id="main">
@@ -110,7 +104,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .phone-header img {
   max-width: 250px;
@@ -138,7 +132,7 @@ export default {
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 50px;
   text-align: center;
   padding-left: 10px;
   margin-top: 5px;
