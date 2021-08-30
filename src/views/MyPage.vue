@@ -13,6 +13,11 @@
 
           <h2>こむぎこ</h2>
           <button class="button">フォローする</button>
+
+          <div class="follows">
+            <p>フォロー</p>
+            <p>フォロワー</p>
+          </div>
           
           <p2>
             はじめまして。
@@ -216,6 +221,12 @@ p2 {
 
 .button{
   color: #849e26;
+}
+
+.follows {
+  display: flex;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 </style>
