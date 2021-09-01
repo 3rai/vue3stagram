@@ -81,7 +81,7 @@ export default{
       this.$store.dispatch('resetStepAction');
     },
 
-    //ファイルマネージャー開いて画像を選択してもらう？ここでは使わない
+    //ファイルマネージャー開いて画像を選択してもらう？
     UploadImage(evt){
       const files = evt.target.files;
       if(!files.length) return;
@@ -90,7 +90,6 @@ export default{
       reader.readAsDataURL(this.uploadfile);
       reader.onload = evt => {
         this.uploadImage = evt.target.result;
-       // this.$store.commit('setStep', 2);
         console.log(evt);
         //this.$store.commit('setUploadImage', evt.target.result);
         //this.$store.commit('setStep', 2);
@@ -99,13 +98,14 @@ export default{
     },
     //投稿シェア
     sharePost() {
-      const postData = {
+      const postData = {     //firestoreのフィールド管理（追加可能）
         username: this.$store.state.user.userName,
         userId: this.$store.state.user.id,
         userImage: "https://api.adorable.io/avatars/285/abott@adorable.png",
         postImage: this.uploadImage,
         likes: 0,
         caption: this.comment,
+        place: this.place
         //filter: this.state.selectedFilter
       };
       db.firestore().collection('posts').doc().set(postData);
@@ -116,6 +116,7 @@ export default{
       this.$store.dispatch('logout');
       this.$store.push('/auth');
     },
+    //使わない
     check(){
       this.$store.push('/')
       console.log(

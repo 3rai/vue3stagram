@@ -50,6 +50,9 @@ export default createStore({
     setUserInfo(state, data){
       state.user.userName = data.userName;
       state.user.id = data.userId;
+      state.user.profileImage = data.userProfileImage;
+      state.user.nickname = data.userNickname;
+      state.user.comment = data.userComment;
     },
     setStep(state, data){
       state.step = data;

@@ -7,7 +7,7 @@
     <div class="reg-body">
       <div v-if="step === 1" class="feed" v-dragscroll.y>
         <div class="description">
-          ニックネームとプロフィール画像を設定できます
+          プロフィールを設定
         </div>
         <div class="item nickname">
           <p>ニックネーム</p>
@@ -25,8 +25,12 @@
             >ファイルを選択
           </label>
         </div>
-        <div v-if="profileimage!=null" class="selected-image">
-          <img :src="profileimage"/>
+        <div v-if="profileImage!=null" class="selected-image">
+          <img :src="profileImage"/>
+        </div>
+        <div class="item comment">
+          <p>ひとこと</p>
+          <input class="comment-form" type="text" v-model="comment"/>
         </div>
         <div class="next">
           <button @click="check">次へ</button>
@@ -140,8 +144,8 @@
             </p> 
           </div>
         </div> 
-        <button @click="goToHome">戻る</button>
-        <button @click="check2">登録</button>
+        <button @click="return1">戻る</button>
+        <button @click="register">登録</button>
       </div>
     </div>
   </div>
@@ -153,6 +157,7 @@
 <script>
 //import RegisterBody from "@/components/RegisterBody";
 import Footer from "@/components/Footer.vue";
+import db from 'firebase' ;
 export default{
   name: 'Register',
   components: {
@@ -162,6 +167,7 @@ export default{
     return{
       nickname: "",
       profileimage: null,
+      comment: "",
     }
   },
   computed: {
@@ -184,7 +190,7 @@ export default{
   methods:{
 
     //Registerの初期画面に移動にしたい＝atep===1に移動
-    goToHome(){
+    return1(){
       this.$store.dispatch('resetStepAction');
     },
 
@@ -195,7 +201,7 @@ export default{
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = evt => {
-        this.profileimage = evt.target.result;
+        this.profileImage = evt.target.result;
         //this.$store.commit('setStep', 2);
       };
       document.querySelector("#file").value = "";
@@ -215,10 +221,17 @@ export default{
       this.$store.commit('setStep', 2);
       console.log(
         this.nickname,
-        this.profileimage
+        this.profileImage
       )
     },
-    check2(){
+    register(){
+      const userData = {
+        profileImage: this.profileImage,
+        nickname: this.nickname,
+        comment: this.comment
+      }
+      db.firestore().collection('users').doc(this.$store.state.user.id).set(userData, {merge: true})
+      //this.$store.commit('setUserInfo', {userProfileImage: userData.profileImage, userNickname: userData.nickname, userComment: userData.comment});
       this.$store.commit('setStep', 1);
       this.$router.push('/')
     }
