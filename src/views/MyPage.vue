@@ -11,8 +11,8 @@
             <img src="@/assets/S__852356.jpg" />
           </div>
 
-          <h2>こむぎこ</h2>
-          <button class="button">フォローする</button>
+          <h2>ねもと</h2>
+          <button @click="followbutton">フォローする</button>
 
           <div class="follows">
             <p>フォロー</p>
@@ -88,7 +88,11 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    followbutton() {
+
+    }
+  },
 };
 </script>
 
@@ -227,6 +231,10 @@ p2 {
   display: flex;
   padding-top: 1%;
   padding-bottom: 1%;
+}
+
+.follows p{
+  padding: 10px;
 }
 
 </style>
